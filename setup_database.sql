@@ -90,7 +90,7 @@ CREATE TABLE army_rank (
 --description: master table listing army corp and regiment information
 CREATE TABLE corp_and_regiment (
     corp_and_regiment_id SERIAL PRIMARY KEY,
-    corp_and_regiment_name VARCHAR(100) NOT NULL
+    corp_and_regiment_name VARCHAR(100) NOT NULL UNIQUE
 );
 
 --table: unit
