@@ -1,56 +1,4 @@
 -- insert sample data for master tables
-INSERT INTO army_rank (rank_name) VALUES
-('Private'),
-('Lance Corporal'),
-('Corporal'),
-('Sergeant'),
-('Staff Sergeant'),
-('Warrant Officer II'),
-('Warrant Officer I'),
-('Second Lieutenant'),
-('Lieutenant'),
-('Captain'),
-('Major'),
-('Lieutenant Colonel'),
-('Colonel'),
-('Brigadier'),
-('Major General'),
-('Lieutenant General');
-
-INSERT INTO corp_and_regiment (corp_and_regiment_name) VALUES
-('Sri Lanka Signal Corps'),
-('Sri Lanka Armoured Corps'),
-('Sri Lanka Light Infantry'),
-('Sri Lanka Artillery'),
-('Sri Lanka Engineers'),
-('Sri Lanka Medical Corps'),
-('Sri Lanka Electrical and Mechanical Engineers'),
-('Sri Lanka Army Ordnance Corps'),
-('Sri Lanka Army Service Corps');
-
-INSERT INTO unit (unit_name) VALUES
-('1 SLSC'),
-('2 SLSC'),
-('3 SLE'),
-('4 SLAC'),
-('5 SLA'),
-('6 SLLI'),
-('7 SLEME'),
-('8 SLAMC'),
-('9 SLAOC'),
-('10 SLASC');
-
-INSERT INTO appointment (appointment_name) VALUES
-('Platoon Commander'),
-('Company Commander'),
-('Battalion Adjutant'),
-('Regimental Sergeant Major'),
-('Medical Officer'),
-('Training Instructor'),
-('Signals Officer'),
-('Logistics Officer'),
-('Engineer Officer'),
-('Quartermaster');
 
 INSERT INTO award (award_name) VALUES
 ('Desha Putra Sammanaya'),
@@ -103,23 +51,6 @@ INSERT INTO civil_qualification (civil_qualification_name) VALUES
 ('Master of Business Administration'),
 ('Diploma in Engineering');
 
-INSERT INTO security_clearance (security_clearance_level, weapon_handling_clearance) VALUES
-('1-Unit', 'Yes'),
-('2-Division', 'Yes'),
-('3-Army HQ', 'No');
-
-INSERT INTO special_duty (special_duty_type, special_duty_description) VALUES
-('VIP Guard', 'Assigned to guard VIP personnel'),
-('Instructor', 'Trains recruits or other officers'),
-('Military Attaché', 'Represents Army abroad'),
-('Parade Commander', 'Leads ceremonial parades');
-
-INSERT INTO overseas_posting (overseas_posting_type, overseas_posting_country, overseas_posting_description) VALUES
-('UN Mission', 'Lebanon', 'UNIFIL deployment 2020-2021'),
-('Training', 'India', 'Signal Officer Advanced Training'),
-('Exchange Program', 'UK', 'Officer Exchange – Royal Army'),
-('Medical Training', 'Pakistan', 'Military Medical Camp 2022');
-
 INSERT INTO commendation (commendation_name) VALUES
 ('Commended by CO'),
 ('Brigade Commander Commendation'),
@@ -142,33 +73,6 @@ INSERT INTO foreign_mission (foreign_mission_country, foreign_mission_descriptio
 
 
 -- insert sample data for other tables in relation to 10 employees
-INSERT INTO employee (nic_no, passport_no, full_name, name_in_sinhala, name_in_tamil, date_of_birth, gender, marital_status, spouse_name, number_of_children, religion, nationality, photo_id) VALUES
-('19900000001V', 'P0000001', 'Kumar Silva', 'කුමාර් සිල්වා', 'குமார் சில்வா',
- '1985-01-10', 'Male', 'Single', NULL, 0, 'Buddhism', 'Sri Lankan', 'images/kumar_silva.jpg'),
-('19900000002V', 'P0000002', 'Nadeesha Fernando', 'නාදේෂා ෆර්නැන්ඩෝ', 'நாதேஷா பெர்னான்டோ',
- '1988-02-20', 'Female', 'Married', 'Aruni Fernando', 1, 'Christianity', 'Sri Lankan', 'images/nadeesha_fernando.jpg'),
-('19900000003V', 'P0000003', 'Arjuna Perera', 'අර්ජුන පෙරේරා', 'அர்ஜுன பெரேரா',
- '1982-03-15', 'Male', 'Married', 'Malini Perera', 2, 'Hinduism', 'Sri Lankan', 'images/arjuna_perera.jpg'),
-('19900000004V', 'P0000004', 'Vindya Jayawardena', 'විඳියා ජයවර්ධන', 'விந்தியா ஜயவர்தன',
- '1987-04-05', 'Female', 'Single', NULL, 0, 'Islam', 'Sri Lankan', 'images/vindya_jayawardena.jpg'),
-('19900000005V', 'P0000005', 'Nimal Silva', 'නිමාල් සිල්වා', 'நிமால் சில்வா',
- '1992-05-20', 'Male', 'Single', NULL, 0, 'Buddhism', 'Sri Lankan', 'images/nimal_silva.jpg'),
-('19900000006V', 'P0000006', 'Ruwan Perera', 'රුවන් පෙරේරා', 'ருவன் பெரேரா',
- '1990-06-30', 'Male', 'Married', 'Samantha Perera', 1, 'Christianity', 'Sri Lankan', 'images/ruwan_perera.jpg'),
-('19000000007V', 'P0000007', 'Suneth De Silva', 'සුනෙත් ද සිල්වා', 'ஸுனேத் டி சில்வா',
- '1995-07-12', 'Male', 'Single', NULL, 0, 'Hinduism', 'Sri Lankan', 'images/suneth_de_silva.jpg'),
-('19000000008V', 'P0000008', 'Kamal Jayasuriya', 'කමල් ජයසූරිය', 'கமால் ஜெயசூரியா',
- '1985-08-25', 'Male', 'Married', 'Manjula Jayasuriya', 3, 'Buddhism', 'Sri Lankan', 'images/kamal_jayasuriya.jpg'),
-('19900000009V', 'P0000009', 'Arun Fernando', 'අරුණ ෆර්නැන්ඩෝ', 'அருண் பெர்னாண்டோ',
- '1978-09-10', 'Male', 'Married', 'Lalitha Fernando', 2, 'Christianity', 'Sri Lankan', 'images/arun_fernando.jpg'),
-('19900000010V', 'P0000010', 'Kavinda De Silva', 'කවින්ද ද සිල්වා', 'கவிந்தி டி சில்வா',
- '1983-10-05', 'Male', 'Married', 'Samanthi De Silva', 1, 'Buddhism', 'Sri Lankan', 'images/kavinda_de_silva.jpg');
-
-INSERT INTO posting (from_date, to_date, rank_id, corp_and_regiment_id, unit_id, appointment_id, special_duty_id, overseas_posting_id, emp_no) VALUES
-('2020-01-01', '2021-01-01', 2, 1, 1, 1, 1, 1, 1),
-('2021-02-01', '2023-01-01', 4, 2, 2, 2, 2, NULL, 2),
-('2019-03-15', '2022-05-10', 5, 3, 3, 3, NULL, 2, 3),
-('2022-06-01', '2024-06-01', 6, 4, 4, 4, NULL, NULL, 4);
 
 INSERT INTO service_history (category, type_of_service, enlistment_date, current_status, retirement_date, service_number_stamp, emp_no) VALUES
 ('Officer', 'Regular Force', '2010-01-01', 'On Service', NULL, 'Yes', 1),
@@ -238,12 +142,6 @@ INSERT INTO medical_history (medical_history_date, medical_history_description, 
 ('2022-02-15', 'Seasonal flu', 2),
 ('2020-09-10', 'Minor surgery – appendicitis', 3);
 
-INSERT INTO employee_is_granted_security_clearance (emp_no, security_clearance_id, clearance_expiry, clearance_status) VALUES
-(1, 1, '2025-12-31', 'Active'),
-(2, 2, '2024-10-01', 'Active'),
-(3, 3, '2023-08-20', 'Expired'),
-(4, 1, '2026-01-15', 'Active');
-
 INSERT INTO employee_receives_award (emp_no, award_id, award_date) VALUES
 (1, 1, '2021-03-01'),
 (2, 2, '2022-07-15'),
@@ -269,12 +167,6 @@ INSERT INTO disciplinary_action (date_of_action, action_type, outcome, reason_fo
 INSERT INTO court_martial_record (date_of_trial, charges, verdict, sentence, emp_no) VALUES
 ('2019-06-10', 'Desertion', 'Guilty', 'Reprimand and loss of pay', 4),
 ('2023-01-05', 'Insubordination', 'Not Guilty', 'No further action', 5);
-
-INSERT INTO users (username, password_hash, email, user_role, emp_no, is_active) VALUES
-('admin_kavinda', 'Password123!', 'admin.kavinda@army.lk', 'Admin', 10, true),
-('hr_arun', 'Password123!', 'hr.arun@army.lk', 'HR Officer', 9, true),
-('co_kamal', 'Password123!', 'co.kamal@army.lk', 'Commanding Officer', 8, true),
-('med_suneth', 'Password123!', 'med.suneth@army.lk', 'Medical Officer', 7, true);
 
 
 
@@ -473,7 +365,61 @@ INSERT INTO users (username, password_hash, email, user_role, emp_no, is_active)
   "emp_no": 6,
   "is_active": false
 }
+{ 
+  "username": "co_nimal", 
+  "password_hash": "Password123!", 
+  "email": "co.nimal@army.lk", 
+  "user_role": "Commanding Officer", 
+  "emp_no": 5, "is_active": true 
+}
 
+-- posting table
+{
+  "from_date": "2020-01-01",
+  "to_date": "2021-01-01",
+  "rank_id": 2,
+  "corp_and_regiment_id": 1,
+  "unit_id": 1,
+  "appointment_id": 1,
+  "special_duty_id": 1,
+  "overseas_posting_id": 1,
+  "emp_no": 1
+}
+{
+  "from_date": "2021-02-01",
+  "to_date": "2023-01-01",
+  "rank_id": 4,
+  "corp_and_regiment_id": 2,
+  "unit_id": 2,
+  "appointment_id": 2,
+  "special_duty_id": 2,
+  "overseas_posting_id": null,
+  "emp_no": 2
+}
+{
+  "from_date": "2019-03-15",
+  "to_date": "2022-05-10",
+  "rank_id": 5,
+  "corp_and_regiment_id": 3,
+  "unit_id": 3,
+  "appointment_id": 3,
+  "special_duty_id": null,
+  "overseas_posting_id": 2,
+  "emp_no": 3
+}
+{
+  "from_date": "2022-06-01",
+  "to_date": "2024-06-01",
+  "rank_id": 6,
+  "corp_and_regiment_id": 4,
+  "unit_id": 4,
+  "appointment_id": 4,
+  "special_duty_id": null,
+  "overseas_posting_id": null,
+  "emp_no": 4
+}
+
+-- MASTER TABLES
 -- army_rank table
 {"rank_name": "Private"}
 {"rank_name": "Lance Corporal"}
@@ -491,3 +437,118 @@ INSERT INTO users (username, password_hash, email, user_role, emp_no, is_active)
 {"rank_name": "Brigadier"}
 {"rank_name": "Major General"}
 {"rank_name": "Lieutenant General"}
+
+-- corp_and_regiment table
+{ "corp_and_regiment_name": "Sri Lanka Signal Corps" }
+{ "corp_and_regiment_name": "Sri Lanka Armoured Corps" }
+{ "corp_and_regiment_name": "Sri Lanka Light Infantry" }
+{ "corp_and_regiment_name": "Sri Lanka Artillery" }
+{ "corp_and_regiment_name": "Sri Lanka Engineers" }
+{ "corp_and_regiment_name": "Sri Lanka Medical Corps" }
+{ "corp_and_regiment_name": "Sri Lanka Electrical and Mechanical Engineers" }
+{ "corp_and_regiment_name": "Sri Lanka Army Ordnance Corps" }
+{ "corp_and_regiment_name": "Sri Lanka Army Service Corps" }
+
+-- unit table
+{ "unit_name": "1 SLSC" }
+{ "unit_name": "2 SLSC" }
+{ "unit_name": "3 SLE" }
+{ "unit_name": "4 SLAC" }
+{ "unit_name": "5 SLA" }
+{ "unit_name": "6 SLLI" }
+{ "unit_name": "7 SLEME" }
+{ "unit_name": "8 SLAMC" }
+{ "unit_name": "9 SLAOC" }
+{ "unit_name": "10 SLASC" }
+
+-- appointment table
+{ "appointment_name": "Platoon Commander" }
+{ "appointment_name": "Company Commander" }
+{ "appointment_name": "Battalion Adjutant" }
+{ "appointment_name": "Regimental Sergeant Major" }
+{ "appointment_name": "Medical Officer" }
+{ "appointment_name": "Training Instructor" }
+{ "appointment_name": "Signals Officer" }
+{ "appointment_name": "Logistics Officer" }
+{ "appointment_name": "Engineer Officer" }
+{ "appointment_name": "Quartermaster" }
+
+-- special_duty table
+{
+  "special_duty_type": "VIP Guard",
+  "special_duty_description": "Assigned to guard VIP personnel"
+}
+{
+  "special_duty_type": "Instructor",
+  "special_duty_description": "Trains recruits or other officers"
+}
+{
+  "special_duty_type": "Military Attaché",
+  "special_duty_description": "Represents Army abroad"
+}
+{
+  "special_duty_type": "Parade Commander",
+  "special_duty_description": "Leads ceremonial parades"
+}
+
+-- overseas_posting table
+{
+  "overseas_posting_type": "UN Mission",
+  "overseas_posting_country": "Lebanon",
+  "overseas_posting_description": "UNIFIL deployment 2020-2021"
+}
+{
+  "overseas_posting_type": "Training",
+  "overseas_posting_country": "India",
+  "overseas_posting_description": "Signal Officer Advanced Training"
+}
+{
+  "overseas_posting_type": "Exchange Program",
+  "overseas_posting_country": "UK",
+  "overseas_posting_description": "Officer Exchange – Royal Army"
+}
+{
+  "overseas_posting_type": "Medical Training",
+  "overseas_posting_country": "Pakistan",
+  "overseas_posting_description": "Military Medical Camp 2022"
+}
+
+-- security_clearance table
+{
+  "security_clearance_level": "1-Unit",
+  "weapon_handling_clearance": "Yes"
+}
+{
+  "security_clearance_level": "2-Division",
+  "weapon_handling_clearance": "Yes"
+}
+{
+  "security_clearance_level": "3-Army HQ",
+  "weapon_handling_clearance": "No"
+}
+
+-- employee_clearance table
+{
+  "emp_no": 1,
+  "security_clearance_id": 1,
+  "clearance_expiry": "2025-12-31",
+  "clearance_status": "Active"
+}
+{
+  "emp_no": 2,
+  "security_clearance_id": 2,
+  "clearance_expiry": "2024-10-01",
+  "clearance_status": "Active"
+}
+{
+  "emp_no": 3,
+  "security_clearance_id": 3,
+  "clearance_expiry": "2023-08-20",
+  "clearance_status": "Expired"
+}
+{
+  "emp_no": 4,
+  "security_clearance_id": 1,
+  "clearance_expiry": "2026-01-15",
+  "clearance_status": "Active"
+}

@@ -1,5 +1,7 @@
+import { EmployeeClearance } from "src/employee_clearance/entities/employee_clearance.entity";
+import { Posting } from "src/posting/entities/posting.entity";
 import { User } from "src/users/entities/user.entity";
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 export enum Gender {
     Male = 'Male',
@@ -56,6 +58,12 @@ export class Employee {
     @Column({ type: 'varchar', length: 255, nullable: true })
     photo_id?: string;
 
-    @OneToOne(() => User, user => user.employee)
-    user?: User;
+    @OneToOne(() => User, (user) => user.employee)
+    user: User;
+
+    @OneToMany(() => Posting, posting => posting.employee)
+    postings: Posting[];
+
+    @OneToMany(() => EmployeeClearance, employee_clearance => employee_clearance.employee)
+    employee_clearances: EmployeeClearance[];
 }

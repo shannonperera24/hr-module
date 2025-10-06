@@ -1,14 +1,14 @@
 import { Posting } from "src/posting/entities/posting.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('corp_and_regiment')
-export class CorpAndRegiment {
+@Entity('unit')
+export class Unit {
     @PrimaryGeneratedColumn()
-    corp_and_regiment_id: number;
+    unit_id: number;
 
     @Column({ type: 'varchar', length: 100, unique: true })
-    corp_and_regiment_name: string;
+    unit_name: string;
 
-    @OneToMany(() => Posting, posting => posting.corp_and_regiment)
+    @OneToMany(() => Posting, posting => posting.unit)
     postings: Posting[];
 }

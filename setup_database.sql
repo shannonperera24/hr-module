@@ -61,7 +61,7 @@ CREATE TABLE court_martial_record (
 --description: master table listing security clearance information
 CREATE TABLE security_clearance (
     security_clearance_id SERIAL PRIMARY KEY,
-    security_clearance_level VARCHAR(100) NOT NULL,
+    security_clearance_level VARCHAR(100) NOT NULL UNIQUE,
     weapon_handling_clearance weapon_handling_clearance_enum NOT NULL
 );
 
@@ -97,14 +97,14 @@ CREATE TABLE corp_and_regiment (
 --description: master table listing army unit information
 CREATE TABLE unit (
     unit_id SERIAL PRIMARY KEY,
-    unit_name VARCHAR(100) NOT NULL
+    unit_name VARCHAR(100) NOT NULL UNIQUE
 );
 
 --table: appointment
 --description: master table listing army appointment information
 CREATE TABLE appointment (
     appointment_id SERIAL PRIMARY KEY,
-    appointment_name VARCHAR(100) NOT NULL
+    appointment_name VARCHAR(100) NOT NULL UNIQUE
 );
 
 --table: special_duty

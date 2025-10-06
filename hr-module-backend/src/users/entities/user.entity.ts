@@ -27,11 +27,11 @@ export class User {
 
     @Column({ type: 'boolean', default: true })
     is_active: boolean;
-
-    @Column({ type: 'int' })
-    emp_no: number;
     
-    @OneToOne(() => Employee, employee => employee.user, {nullable: false} )
+    @Column()
+    emp_no: number;    
+
+    @OneToOne(() => Employee, (employee) => employee.user )
     @JoinColumn({ name: 'emp_no' })
     employee: Employee;
 }
