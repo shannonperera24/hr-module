@@ -1,5 +1,8 @@
+import { CourtMartialRecord } from "src/court_martial_record/entities/court_martial_record.entity";
+import { DisciplinaryAction } from "src/disciplinary_action/entities/disciplinary_action.entity";
 import { EmployeeClearance } from "src/employee_clearance/entities/employee_clearance.entity";
 import { Posting } from "src/posting/entities/posting.entity";
+import { ServiceHistory } from "src/service_history/entities/service_history.entity";
 import { User } from "src/users/entities/user.entity";
 import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
@@ -60,6 +63,15 @@ export class Employee {
 
     @OneToOne(() => User, (user) => user.employee)
     user: User;
+
+    @OneToOne(() => ServiceHistory, (service_history) => service_history.employee)
+    service_history: ServiceHistory;
+
+    @OneToMany(() => DisciplinaryAction, disciplinary_action => disciplinary_action.employee)
+    disciplinary_actions: DisciplinaryAction[];
+
+    @OneToMany(() => CourtMartialRecord, court_martial_record => court_martial_record.employee)
+    court_martial_records: CourtMartialRecord[];
 
     @OneToMany(() => Posting, posting => posting.employee)
     postings: Posting[];

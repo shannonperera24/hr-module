@@ -13,6 +13,10 @@ import { OverseasPostingModule } from './overseas_posting/overseas_posting.modul
 import { PostingModule } from './posting/posting.module';
 import { SecurityClearanceModule } from './security_clearance/security_clearance.module';
 import { EmployeeClearanceModule } from './employee_clearance/employee_clearance.module';
+import { ServiceHistoryModule } from './service_history/service_history.module';
+import { DisciplinaryActionModule } from './disciplinary_action/disciplinary_action.module';
+import { CourtMartialRecordModule } from './court_martial_record/court_martial_record.module';
+import { PromotionModule } from './promotion/promotion.module';
 
 @Module({
   imports: [
@@ -38,6 +42,10 @@ import { EmployeeClearanceModule } from './employee_clearance/employee_clearance
     PostingModule,
     SecurityClearanceModule,
     EmployeeClearanceModule,
+    ServiceHistoryModule,
+    DisciplinaryActionModule,
+    CourtMartialRecordModule,
+    PromotionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

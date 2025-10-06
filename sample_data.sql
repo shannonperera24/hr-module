@@ -74,19 +74,6 @@ INSERT INTO foreign_mission (foreign_mission_country, foreign_mission_descriptio
 
 -- insert sample data for other tables in relation to 10 employees
 
-INSERT INTO service_history (category, type_of_service, enlistment_date, current_status, retirement_date, service_number_stamp, emp_no) VALUES
-('Officer', 'Regular Force', '2010-01-01', 'On Service', NULL, 'Yes', 1),
-('Officer', 'Regular Force', '2011-05-10', 'On Service', NULL, 'Yes', 2),
-('OR', 'Volunteer Force', '2009-03-15', 'Retired', '2023-03-15', 'No', 3),
-('Cadet', 'Regular Force', '2012-07-01', 'On Service', NULL, 'Yes', 4);
-
-INSERT INTO promotion (promotion_date, old_rank_id, new_rank_id, service_history_id) VALUES
-('2015-01-01', 1, 2, 1),
-('2018-06-10', 2, 3, 1),
-('2016-04-20', 2, 4, 2),
-('2020-05-01', 4, 5, 2),
-('2014-07-15', 3, 4, 3);
-
 INSERT INTO qualification_record (has_instructor_experience, emp_no) VALUES
 ('Yes', 1),
 ('No', 2),
@@ -159,18 +146,121 @@ INSERT INTO employee_receives_sporting_achievement (emp_no, sporting_achievement
 (2, 1, '2021-03-10'),
 (4, 2, '2022-05-05');
 
-INSERT INTO disciplinary_action (date_of_action, action_type, outcome, reason_for_action, confidential_remarks, emp_no) VALUES
-('2022-03-15', 'Verbal Warning', 'Warning issued', 'Late to drill repeatedly', NULL, 1),
-('2021-09-01', 'Written Warning', 'Letter on file', 'Missing equipment', 'Handled internally', 2),
-('2020-11-20', 'Suspension', 'Suspended 2 weeks', 'Violation of leave policy', NULL, 3);
-
-INSERT INTO court_martial_record (date_of_trial, charges, verdict, sentence, emp_no) VALUES
-('2019-06-10', 'Desertion', 'Guilty', 'Reprimand and loss of pay', 4),
-('2023-01-05', 'Insubordination', 'Not Guilty', 'No further action', 5);
 
 
 
 -- insert sample data through postman post requests (json)
+
+-- MASTER TABLES
+
+-- army_rank table
+{"rank_name": "Private"}
+{"rank_name": "Lance Corporal"}
+{"rank_name": "Corporal"}
+{"rank_name": "Sergeant"}
+{"rank_name": "Staff Sergeant"}
+{"rank_name": "Warrant Officer II"}
+{"rank_name": "Warrant Officer I"}
+{"rank_name": "Second Lieutenant"}
+{"rank_name": "Lieutenant"}
+{"rank_name": "Captain"}
+{"rank_name": "Major"}
+{"rank_name": "Lieutenant Colonel"}
+{"rank_name": "Colonel"}
+{"rank_name": "Brigadier"}
+{"rank_name": "Major General"}
+{"rank_name": "Lieutenant General"}
+
+-- corp_and_regiment table
+{ "corp_and_regiment_name": "Sri Lanka Signal Corps" }
+{ "corp_and_regiment_name": "Sri Lanka Armoured Corps" }
+{ "corp_and_regiment_name": "Sri Lanka Light Infantry" }
+{ "corp_and_regiment_name": "Sri Lanka Artillery" }
+{ "corp_and_regiment_name": "Sri Lanka Engineers" }
+{ "corp_and_regiment_name": "Sri Lanka Medical Corps" }
+{ "corp_and_regiment_name": "Sri Lanka Electrical and Mechanical Engineers" }
+{ "corp_and_regiment_name": "Sri Lanka Army Ordnance Corps" }
+{ "corp_and_regiment_name": "Sri Lanka Army Service Corps" }
+
+-- unit table
+{ "unit_name": "1 SLSC" }
+{ "unit_name": "2 SLSC" }
+{ "unit_name": "3 SLE" }
+{ "unit_name": "4 SLAC" }
+{ "unit_name": "5 SLA" }
+{ "unit_name": "6 SLLI" }
+{ "unit_name": "7 SLEME" }
+{ "unit_name": "8 SLAMC" }
+{ "unit_name": "9 SLAOC" }
+{ "unit_name": "10 SLASC" }
+
+-- appointment table
+{ "appointment_name": "Platoon Commander" }
+{ "appointment_name": "Company Commander" }
+{ "appointment_name": "Battalion Adjutant" }
+{ "appointment_name": "Regimental Sergeant Major" }
+{ "appointment_name": "Medical Officer" }
+{ "appointment_name": "Training Instructor" }
+{ "appointment_name": "Signals Officer" }
+{ "appointment_name": "Logistics Officer" }
+{ "appointment_name": "Engineer Officer" }
+{ "appointment_name": "Quartermaster" }
+
+-- special_duty table
+{
+  "special_duty_type": "VIP Guard",
+  "special_duty_description": "Assigned to guard VIP personnel"
+}
+{
+  "special_duty_type": "Instructor",
+  "special_duty_description": "Trains recruits or other officers"
+}
+{
+  "special_duty_type": "Military Attaché",
+  "special_duty_description": "Represents Army abroad"
+}
+{
+  "special_duty_type": "Parade Commander",
+  "special_duty_description": "Leads ceremonial parades"
+}
+
+-- overseas_posting table
+{
+  "overseas_posting_type": "UN Mission",
+  "overseas_posting_country": "Lebanon",
+  "overseas_posting_description": "UNIFIL deployment 2020-2021"
+}
+{
+  "overseas_posting_type": "Training",
+  "overseas_posting_country": "India",
+  "overseas_posting_description": "Signal Officer Advanced Training"
+}
+{
+  "overseas_posting_type": "Exchange Program",
+  "overseas_posting_country": "UK",
+  "overseas_posting_description": "Officer Exchange – Royal Army"
+}
+{
+  "overseas_posting_type": "Medical Training",
+  "overseas_posting_country": "Pakistan",
+  "overseas_posting_description": "Military Medical Camp 2022"
+}
+
+-- security_clearance table
+{
+  "security_clearance_level": "1-Unit",
+  "weapon_handling_clearance": "Yes"
+}
+{
+  "security_clearance_level": "2-Division",
+  "weapon_handling_clearance": "Yes"
+}
+{
+  "security_clearance_level": "3-Army HQ",
+  "weapon_handling_clearance": "No"
+}
+
+-- OTHER TABLES
 
 -- employee table (10 employees)
 {
@@ -419,114 +509,6 @@ INSERT INTO court_martial_record (date_of_trial, charges, verdict, sentence, emp
   "emp_no": 4
 }
 
--- MASTER TABLES
--- army_rank table
-{"rank_name": "Private"}
-{"rank_name": "Lance Corporal"}
-{"rank_name": "Corporal"}
-{"rank_name": "Sergeant"}
-{"rank_name": "Staff Sergeant"}
-{"rank_name": "Warrant Officer II"}
-{"rank_name": "Warrant Officer I"}
-{"rank_name": "Second Lieutenant"}
-{"rank_name": "Lieutenant"}
-{"rank_name": "Captain"}
-{"rank_name": "Major"}
-{"rank_name": "Lieutenant Colonel"}
-{"rank_name": "Colonel"}
-{"rank_name": "Brigadier"}
-{"rank_name": "Major General"}
-{"rank_name": "Lieutenant General"}
-
--- corp_and_regiment table
-{ "corp_and_regiment_name": "Sri Lanka Signal Corps" }
-{ "corp_and_regiment_name": "Sri Lanka Armoured Corps" }
-{ "corp_and_regiment_name": "Sri Lanka Light Infantry" }
-{ "corp_and_regiment_name": "Sri Lanka Artillery" }
-{ "corp_and_regiment_name": "Sri Lanka Engineers" }
-{ "corp_and_regiment_name": "Sri Lanka Medical Corps" }
-{ "corp_and_regiment_name": "Sri Lanka Electrical and Mechanical Engineers" }
-{ "corp_and_regiment_name": "Sri Lanka Army Ordnance Corps" }
-{ "corp_and_regiment_name": "Sri Lanka Army Service Corps" }
-
--- unit table
-{ "unit_name": "1 SLSC" }
-{ "unit_name": "2 SLSC" }
-{ "unit_name": "3 SLE" }
-{ "unit_name": "4 SLAC" }
-{ "unit_name": "5 SLA" }
-{ "unit_name": "6 SLLI" }
-{ "unit_name": "7 SLEME" }
-{ "unit_name": "8 SLAMC" }
-{ "unit_name": "9 SLAOC" }
-{ "unit_name": "10 SLASC" }
-
--- appointment table
-{ "appointment_name": "Platoon Commander" }
-{ "appointment_name": "Company Commander" }
-{ "appointment_name": "Battalion Adjutant" }
-{ "appointment_name": "Regimental Sergeant Major" }
-{ "appointment_name": "Medical Officer" }
-{ "appointment_name": "Training Instructor" }
-{ "appointment_name": "Signals Officer" }
-{ "appointment_name": "Logistics Officer" }
-{ "appointment_name": "Engineer Officer" }
-{ "appointment_name": "Quartermaster" }
-
--- special_duty table
-{
-  "special_duty_type": "VIP Guard",
-  "special_duty_description": "Assigned to guard VIP personnel"
-}
-{
-  "special_duty_type": "Instructor",
-  "special_duty_description": "Trains recruits or other officers"
-}
-{
-  "special_duty_type": "Military Attaché",
-  "special_duty_description": "Represents Army abroad"
-}
-{
-  "special_duty_type": "Parade Commander",
-  "special_duty_description": "Leads ceremonial parades"
-}
-
--- overseas_posting table
-{
-  "overseas_posting_type": "UN Mission",
-  "overseas_posting_country": "Lebanon",
-  "overseas_posting_description": "UNIFIL deployment 2020-2021"
-}
-{
-  "overseas_posting_type": "Training",
-  "overseas_posting_country": "India",
-  "overseas_posting_description": "Signal Officer Advanced Training"
-}
-{
-  "overseas_posting_type": "Exchange Program",
-  "overseas_posting_country": "UK",
-  "overseas_posting_description": "Officer Exchange – Royal Army"
-}
-{
-  "overseas_posting_type": "Medical Training",
-  "overseas_posting_country": "Pakistan",
-  "overseas_posting_description": "Military Medical Camp 2022"
-}
-
--- security_clearance table
-{
-  "security_clearance_level": "1-Unit",
-  "weapon_handling_clearance": "Yes"
-}
-{
-  "security_clearance_level": "2-Division",
-  "weapon_handling_clearance": "Yes"
-}
-{
-  "security_clearance_level": "3-Army HQ",
-  "weapon_handling_clearance": "No"
-}
-
 -- employee_clearance table
 {
   "emp_no": 1,
@@ -551,4 +533,116 @@ INSERT INTO court_martial_record (date_of_trial, charges, verdict, sentence, emp
   "security_clearance_id": 1,
   "clearance_expiry": "2026-01-15",
   "clearance_status": "Active"
+}
+
+-- service_history table
+{
+  "category": "Officer",
+  "type_of_service": "Regular Force",
+  "enlistment_date": "2010-01-01",
+  "current_status": "On Service",
+  "retirement_date": null,
+  "service_number_stamp": "Yes",
+  "emp_no": 1
+}
+{
+  "category": "Officer",
+  "type_of_service": "Regular Force",
+  "enlistment_date": "2011-05-10",
+  "current_status": "On Service",
+  "retirement_date": null,
+  "service_number_stamp": "Yes",
+  "emp_no": 2
+}
+{
+  "category": "OR",
+  "type_of_service": "Volunteer Force",
+  "enlistment_date": "2009-03-15",
+  "current_status": "Retired",
+  "retirement_date": "2023-03-15",
+  "service_number_stamp": "No",
+  "emp_no": 3
+}
+{
+  "category": "Cadet",
+  "type_of_service": "Regular Force",
+  "enlistment_date": "2012-07-01",
+  "current_status": "On Service",
+  "retirement_date": null,
+  "service_number_stamp": "Yes",
+  "emp_no": 4
+}
+
+-- disciplinary_action table
+{
+  "date_of_action": "2022-03-15",
+  "action_type": "Verbal Warning",
+  "outcome": "Warning issued",
+  "reason_for_action": "Late to drill repeatedly",
+  "confidential_remarks": null,
+  "emp_no": 1
+}
+{
+  "date_of_action": "2021-09-01",
+  "action_type": "Written Warning",
+  "outcome": "Letter on file",
+  "reason_for_action": "Missing equipment",
+  "confidential_remarks": "Handled internally",
+  "emp_no": 2
+}
+{
+  "date_of_action": "2020-11-20",
+  "action_type": "Suspension",
+  "outcome": "Suspended 2 weeks",
+  "reason_for_action": "Violation of leave policy",
+  "confidential_remarks": null,
+  "emp_no": 3
+}
+
+-- court_martial_record table
+{
+  "date_of_trial": "2019-06-10",
+  "charges": "Desertion",
+  "verdict": "Guilty",
+  "sentence": "Reprimand and loss of pay",
+  "emp_no": 4
+}
+{
+  "date_of_trial": "2023-01-05",
+  "charges": "Insubordination",
+  "verdict": "Not Guilty",
+  "sentence": "No further action",
+  "emp_no": 5
+}
+
+-- promotion table
+{
+  "promotion_date": "2015-01-01",
+  "old_rank_id": 1,
+  "new_rank_id": 2,
+  "service_history_id": 1
+}
+{
+  "promotion_date": "2018-06-10",
+  "old_rank_id": 2,
+  "new_rank_id": 3,
+  "service_history_id": 1
+}
+{
+  "promotion_date": "2016-04-20",
+  "old_rank_id": 2,
+  "new_rank_id": 4,
+  "service_history_id": 2
+}
+{
+  "promotion_date": "2020-05-01",
+  "old_rank_id": 4,
+  "new_rank_id": 5,
+  "service_history_id": 2
+}
+{
+  "promotion_date": "2014-07-15",
+  "old_rank_id": 3,
+  "new_rank_id": 4,
+  "service_history_id": 3
 }
