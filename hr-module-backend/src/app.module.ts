@@ -21,6 +21,16 @@ import { PayAndBenefitsModule } from './pay_and_benefits/pay_and_benefits.module
 import { AllowanceModule } from './allowance/allowance.module';
 import { EmployeeAllowanceModule } from './employee_allowance/employee_allowance.module';
 import { PersonalLoanModule } from './personal_loan/personal_loan.module';
+import { CivilQualificationModule } from './civil_qualification/civil_qualification.module';
+import { ArmyTrainingCourseModule } from './army_training_course/army_training_course.module';
+import { LanguageProficiencyModule } from './language_proficiency/language_proficiency.module';
+import { ComputerSkillModule } from './computer_skill/computer_skill.module';
+import { QualificationRecordModule } from './qualification_record/qualification_record.module';
+import { QualificationHasCivilModule } from './qualification_has_civil/qualification_has_civil.module';
+import { QualificationArmyTrainingCourseModule } from './qualification_army_training_course/qualification_army_training_course.module';
+import { QualificationLanguageModule } from './qualification_language/qualification_language.module';
+import { QualificationComputerSkillModule } from './qualification_computer_skill/qualification_computer_skill.module';
+import { AwardModule } from './award/award.module';
 
 @Module({
   imports: [
@@ -54,6 +64,16 @@ import { PersonalLoanModule } from './personal_loan/personal_loan.module';
     AllowanceModule,
     EmployeeAllowanceModule,
     PersonalLoanModule,
+    CivilQualificationModule,
+    ArmyTrainingCourseModule,
+    LanguageProficiencyModule,
+    ComputerSkillModule,
+    QualificationRecordModule,
+    QualificationHasCivilModule,
+    QualificationArmyTrainingCourseModule,
+    QualificationLanguageModule,
+    QualificationComputerSkillModule,
+    AwardModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -3,6 +3,7 @@ import { DisciplinaryAction } from "src/disciplinary_action/entities/disciplinar
 import { EmployeeClearance } from "src/employee_clearance/entities/employee_clearance.entity";
 import { PayAndBenefit } from "src/pay_and_benefits/entities/pay_and_benefit.entity";
 import { Posting } from "src/posting/entities/posting.entity";
+import { QualificationRecord } from "src/qualification_record/entities/qualification_record.entity";
 import { ServiceHistory } from "src/service_history/entities/service_history.entity";
 import { User } from "src/users/entities/user.entity";
 import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
@@ -70,6 +71,9 @@ export class Employee {
 
     @OneToOne(() => ServiceHistory, (service_history) => service_history.employee)
     service_history: ServiceHistory;
+
+    @OneToOne(() => QualificationRecord, (qualification_record) => qualification_record.employee)
+    qualification_record: QualificationRecord;
 
     @OneToMany(() => DisciplinaryAction, disciplinary_action => disciplinary_action.employee)
     disciplinary_actions: DisciplinaryAction[];

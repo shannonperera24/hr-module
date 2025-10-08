@@ -8,40 +8,10 @@ INSERT INTO award (award_name) VALUES
 ('Vishista Seva Vibhushanaya'),
 ('Sri Lanka Armed Services Long Service Medal');
 
-INSERT INTO army_training_course (course_name) VALUES
-('Infantry Young Officers Course'),
-('Combat Engineer Course'),
-('Signals Advanced Course'),
-('Medical Officers Course'),
-('Artillery Gunnery Training'),
-('Armoured Corps Leaders Course');
-
 INSERT INTO medical_fitness_category (fitness_category_name, fitness_category_description) VALUES
 ('A', 'Fully fit for all military duties'),
 ('B', 'Fit for limited military duties'),
 ('C', 'Unfit for field duty; office duties only');
-
-INSERT INTO language_proficiency (language_name) VALUES
-('Sinhala'),
-('Tamil'),
-('English'),
-('Hindi');
-
-INSERT INTO computer_skill (computer_skill_name) VALUES
-('MS Word'),
-('MS Excel'),
-('PowerPoint'),
-('Database Management'),
-('Web Development'),
-('Network Administration');
-
-INSERT INTO civil_qualification (civil_qualification_name) VALUES
-('G.C.E. A/L'),
-('Diploma in IT'),
-('Bachelor of Science'),
-('Bachelor of Arts'),
-('Master of Business Administration'),
-('Diploma in Engineering');
 
 INSERT INTO commendation (commendation_name) VALUES
 ('Commended by CO'),
@@ -65,41 +35,6 @@ INSERT INTO foreign_mission (foreign_mission_country, foreign_mission_descriptio
 
 
 -- insert sample data for other tables in relation to 10 employees
-
-INSERT INTO qualification_record (has_instructor_experience, emp_no) VALUES
-('Yes', 1),
-('No', 2),
-('Yes', 3),
-('No', 4);
-
-INSERT INTO qualification_record_includes_civil_qualification (qualification_record_id, civil_qualification_id, civil_qualification_institution, civil_qualification_date_completed) VALUES
-(1, 1, 'Royal College', '2001-12-01'),
-(1, 2, 'SLIIT', '2005-07-15'),
-(2, 1, 'Ananda College', '2002-11-30'),
-(3, 3, 'University of Colombo', '2008-05-20');
-
-INSERT INTO qualification_record_includes_army_training_course (qualification_record_id, course_id, course_institution, course_date_completed) VALUES
-(1, 1, 'KDA', '2010-10-01'),
-(2, 2, 'KDA', '2012-03-01'),
-(3, 3, 'Army Training School', '2011-06-15');
-
-INSERT INTO qualification_record_includes_language_proficiency (qualification_record_id, language_id, language_proficiency_level) VALUES
-(1, 1, 'Fluent'),
-(1, 3, 'Intermediate'),
-(2, 2, 'Basic'),
-(3, 3, 'Fluent');
-
-INSERT INTO qualification_record_includes_computer_skill (qualification_record_id, computer_skill_id) VALUES
-(1, 1),
-(1, 2),
-(2, 3),
-(3, 4);
-
-INSERT INTO employee_allowance (pay_and_benefits_id, allowance_id, allowance_amount, allowance_start_date, allowance_status) VALUES
-(1, 1, 5000.00, '2023-01-01', 'Active'),
-(2, 2, 4000.00, '2023-01-01', 'Active'),
-(3, 3, 6000.00, '2023-01-01', 'Suspended'),
-(4, 4, 3000.00, '2023-01-01', 'Active');
 
 INSERT INTO medical_and_health_record (blood_group, height_cm, weight_kg, bmi, medical_check_date, disability, emp_no, medical_fitness_category_id) VALUES
 ('A+', 170.5, 70.2, 24.1, '2023-06-01', NULL, 1, 1),
@@ -249,6 +184,37 @@ INSERT INTO employee_receives_sporting_achievement (emp_no, sporting_achievement
 {"allowance_type": "Medical Allowance"}
 {"allowance_type": "Transport Allowance"}
 {"allowance_type": "Technical Allowance"}
+
+-- civil_qualification table
+{ "civil_qualification_name": "G.C.E. A/L" }
+{ "civil_qualification_name": "Diploma in IT" }
+{ "civil_qualification_name": "Bachelor of Science" }
+{ "civil_qualification_name": "Bachelor of Arts" }
+{ "civil_qualification_name": "Master of Business Administration" }
+{ "civil_qualification_name": "Diploma in Engineering" }
+
+-- army_training_course table
+{ "course_name": "Infantry Young Officers Course" }
+{ "course_name": "Combat Engineer Course" }
+{ "course_name": "Signals Advanced Course" }
+{ "course_name": "Medical Officers Course" }
+{ "course_name": "Artillery Gunnery Training" }
+{ "course_name": "Armoured Corps Leaders Course" }
+
+-- language_proficiency table
+{ "language_name": "Sinhala" }
+{ "language_name": "Tamil" }
+{ "language_name": "English" }
+{ "language_name": "Hindi" }
+
+-- computer_skill
+{ "computer_skill_name": "MS Word" }
+{ "computer_skill_name": "MS Excel" }
+{ "computer_skill_name": "PowerPoint" }
+{ "computer_skill_name": "Database Management" }
+{ "computer_skill_name": "Web Development" }
+{ "computer_skill_name": "Network Administration" }
+
 
 
 -- OTHER TABLES
@@ -722,4 +688,108 @@ INSERT INTO employee_receives_sporting_achievement (emp_no, sporting_achievement
   "repayment_start_date": "2021-07-15",
   "repayment_end_date": "2024-06-15",
   "pay_and_benefits_id": 2
+}
+
+-- qualification_record table
+{
+  "has_instructor_experience": "Yes",
+  "emp_no": 1
+}
+{
+  "has_instructor_experience": "No",
+  "emp_no": 2
+}
+{
+  "has_instructor_experience": "Yes",
+  "emp_no": 3
+}
+{
+  "has_instructor_experience": "No",
+  "emp_no": 4
+}
+
+-- qualification_has_civil table
+{
+  "qualification_record_id": 1,
+  "civil_qualification_id": 1,
+  "civil_qualification_institution": "Royal College",
+  "civil_qualification_date_completed": "2001-12-01"
+}
+{
+  "qualification_record_id": 1,
+  "civil_qualification_id": 2,
+  "civil_qualification_institution": "SLIIT",
+  "civil_qualification_date_completed": "2005-07-15"
+}
+{
+  "qualification_record_id": 2,
+  "civil_qualification_id": 1,
+  "civil_qualification_institution": "Ananda College",
+  "civil_qualification_date_completed": "2002-11-30"
+}
+{
+  "qualification_record_id": 3,
+  "civil_qualification_id": 3,
+  "civil_qualification_institution": "University of Colombo",
+  "civil_qualification_date_completed": "2008-05-20"
+}
+
+-- qualification_army_training_course table
+{
+  "qualification_record_id": 1,
+  "course_id": 1,
+  "course_institution": "KDA",
+  "course_date_completed": "2010-10-01"
+}
+{
+  "qualification_record_id": 2,
+  "course_id": 2,
+  "course_institution": "KDA",
+  "course_date_completed": "2012-03-01"
+}
+{
+  "qualification_record_id": 3,
+  "course_id": 3,
+  "course_institution": "Army Training School",
+  "course_date_completed": "2011-06-15"
+}
+
+-- qualification_language table
+{
+  "qualification_record_id": 1,
+  "language_id": 1,
+  "language_proficiency_level": "Fluent"
+}
+{
+  "qualification_record_id": 1,
+  "language_id": 3,
+  "language_proficiency_level": "Intermediate"
+}
+{
+  "qualification_record_id": 2,
+  "language_id": 2,
+  "language_proficiency_level": "Basic"
+}
+{
+  "qualification_record_id": 3,
+  "language_id": 3,
+  "language_proficiency_level": "Fluent"
+}
+
+-- qualification_computer_skill table
+{
+  "qualification_record_id": 1,
+  "computer_skill_id": 1
+}
+{
+  "qualification_record_id": 1,
+  "computer_skill_id": 2
+}
+{
+  "qualification_record_id": 2,
+  "computer_skill_id": 3
+}
+{
+  "qualification_record_id": 3,
+  "computer_skill_id": 4
 }
