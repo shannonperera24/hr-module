@@ -16,14 +16,6 @@ INSERT INTO army_training_course (course_name) VALUES
 ('Artillery Gunnery Training'),
 ('Armoured Corps Leaders Course');
 
-INSERT INTO allowance (allowance_type) VALUES
-('Hardship Allowance'),
-('Special Duty Allowance'),
-('Combat Allowance'),
-('Medical Allowance'),
-('Transport Allowance'),
-('Technical Allowance');
-
 INSERT INTO medical_fitness_category (fitness_category_name, fitness_category_description) VALUES
 ('A', 'Fully fit for all military duties'),
 ('B', 'Fit for limited military duties'),
@@ -103,21 +95,11 @@ INSERT INTO qualification_record_includes_computer_skill (qualification_record_i
 (2, 3),
 (3, 4);
 
-INSERT INTO pay_and_benefits (pay_code, basic_pay, bank_account_no, bank_name, epf_no, insurance_no, emp_no) VALUES
-('PAY0001', 65000.00, 'BOC123456789', 'Bank of Ceylon', 'EPF0001', 'INS0001', 1),
-('PAY0002', 72000.00, 'HNB987654321', 'HNB', 'EPF0002', 'INS0002', 2),
-('PAY0003', 58000.00, 'PB112233445', 'Peoples Bank', 'EPF0003', 'INS0003', 3),
-('PAY0004', 91000.00, 'NSB556677889', 'NSB', 'EPF0004', 'INS0004', 4);
-
-INSERT INTO employee_receives_allowance (pay_and_benefits_id, allowance_id, allowance_amount, allowance_start_date, allowance_status) VALUES
+INSERT INTO employee_allowance (pay_and_benefits_id, allowance_id, allowance_amount, allowance_start_date, allowance_status) VALUES
 (1, 1, 5000.00, '2023-01-01', 'Active'),
 (2, 2, 4000.00, '2023-01-01', 'Active'),
 (3, 3, 6000.00, '2023-01-01', 'Suspended'),
 (4, 4, 3000.00, '2023-01-01', 'Active');
-
-INSERT INTO personal_loan (loan_amount, loan_date, interest_rate, repayment_start_date, repayment_end_date, pay_and_benefits_id) VALUES
-(100000.00, '2022-01-01', 7.5, '2022-02-01', '2025-01-01', 1),
-(150000.00, '2021-06-15', 6.5, '2021-07-15', '2024-06-15', 2);
 
 INSERT INTO medical_and_health_record (blood_group, height_cm, weight_kg, bmi, medical_check_date, disability, emp_no, medical_fitness_category_id) VALUES
 ('A+', 170.5, 70.2, 24.1, '2023-06-01', NULL, 1, 1),
@@ -259,6 +241,15 @@ INSERT INTO employee_receives_sporting_achievement (emp_no, sporting_achievement
   "security_clearance_level": "3-Army HQ",
   "weapon_handling_clearance": "No"
 }
+
+-- allowance table
+{"allowance_type": "Hardship Allowance"}
+{"allowance_type": "Special Duty Allowance"}
+{"allowance_type": "Combat Allowance"}
+{"allowance_type": "Medical Allowance"}
+{"allowance_type": "Transport Allowance"}
+{"allowance_type": "Technical Allowance"}
+
 
 -- OTHER TABLES
 
@@ -645,4 +636,90 @@ INSERT INTO employee_receives_sporting_achievement (emp_no, sporting_achievement
   "old_rank_id": 3,
   "new_rank_id": 4,
   "service_history_id": 3
+}
+
+-- pay_and_benefits table
+{
+  "pay_code": "PAY0001",
+  "basic_pay": 65000.00,
+  "bank_account_no": "BOC123456789",
+  "bank_name": "Bank of Ceylon",
+  "epf_no": "EPF0001",
+  "insurance_no": "INS0001",
+  "emp_no": 1
+}
+{
+  "pay_code": "PAY0002",
+  "basic_pay": 72000.00,
+  "bank_account_no": "HNB987654321",
+  "bank_name": "HNB",
+  "epf_no": "EPF0002",
+  "insurance_no": "INS0002",
+  "emp_no": 2
+}
+{
+  "pay_code": "PAY0003",
+  "basic_pay": 58000.00,
+  "bank_account_no": "PB112233445",
+  "bank_name": "Peoples Bank",
+  "epf_no": "EPF0003",
+  "insurance_no": "INS0003",
+  "emp_no": 3
+}
+{
+  "pay_code": "PAY0004",
+  "basic_pay": 91000.00,
+  "bank_account_no": "NSB556677889",
+  "bank_name": "NSB",
+  "epf_no": "EPF0004",
+  "insurance_no": "INS0004",
+  "emp_no": 4
+}
+
+-- employee_allowance table
+{
+  "pay_and_benefits_id": 1,
+  "allowance_id": 1,
+  "allowance_amount": 5000.00,
+  "allowance_start_date": "2023-01-01",
+  "allowance_status": "Active"
+}
+{
+  "pay_and_benefits_id": 2,
+  "allowance_id": 2,
+  "allowance_amount": 4000.00,
+  "allowance_start_date": "2023-01-01",
+  "allowance_status": "Active"
+}
+{
+  "pay_and_benefits_id": 3,
+  "allowance_id": 3,
+  "allowance_amount": 6000.00,
+  "allowance_start_date": "2023-01-01",
+  "allowance_status": "Suspended"
+}
+{
+  "pay_and_benefits_id": 4,
+  "allowance_id": 4,
+  "allowance_amount": 3000.00,
+  "allowance_start_date": "2023-01-01",
+  "allowance_status": "Active"
+}
+
+-- personal_loan table
+{
+  "loan_amount": 100000.00,
+  "loan_date": "2022-01-01",
+  "interest_rate": 7.5,
+  "repayment_start_date": "2022-02-01",
+  "repayment_end_date": "2025-01-01",
+  "pay_and_benefits_id": 1
+}
+{
+  "loan_amount": 150000.00,
+  "loan_date": "2021-06-15",
+  "interest_rate": 6.5,
+  "repayment_start_date": "2021-07-15",
+  "repayment_end_date": "2024-06-15",
+  "pay_and_benefits_id": 2
 }

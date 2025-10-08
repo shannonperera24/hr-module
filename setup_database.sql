@@ -213,9 +213,7 @@ CREATE TABLE employee_allowance (
         allowance_amount >= 0
     ),
     allowance_start_date DATE NOT NULL,
-    allowance_status VARCHAR(20) NOT NULL CHECK (
-        allowance_status IN ('Active', 'Suspended', 'Ended')
-    ),
+    allowance_status allowance_status_enum NOT NULL,
 
     UNIQUE (pay_and_benefits_id, allowance_id),
     FOREIGN KEY (pay_and_benefits_id) REFERENCES pay_and_benefits(pay_and_benefits_id),

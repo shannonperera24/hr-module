@@ -1,8 +1,9 @@
 import { ArmyRank } from "src/army_rank/entities/army_rank.entity";
 import { ServiceHistory } from "src/service_history/entities/service_history.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Check, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('promotion')
+@Check(`"old_rank_id" != "new_rank_id"`)
 export class Promotion {
     @PrimaryGeneratedColumn()
     promotion_id: number;

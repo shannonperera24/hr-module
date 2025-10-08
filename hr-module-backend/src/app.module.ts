@@ -17,6 +17,10 @@ import { ServiceHistoryModule } from './service_history/service_history.module';
 import { DisciplinaryActionModule } from './disciplinary_action/disciplinary_action.module';
 import { CourtMartialRecordModule } from './court_martial_record/court_martial_record.module';
 import { PromotionModule } from './promotion/promotion.module';
+import { PayAndBenefitsModule } from './pay_and_benefits/pay_and_benefits.module';
+import { AllowanceModule } from './allowance/allowance.module';
+import { EmployeeAllowanceModule } from './employee_allowance/employee_allowance.module';
+import { PersonalLoanModule } from './personal_loan/personal_loan.module';
 
 @Module({
   imports: [
@@ -46,6 +50,10 @@ import { PromotionModule } from './promotion/promotion.module';
     DisciplinaryActionModule,
     CourtMartialRecordModule,
     PromotionModule,
+    PayAndBenefitsModule,
+    AllowanceModule,
+    EmployeeAllowanceModule,
+    PersonalLoanModule,
   ],
   controllers: [AppController],
   providers: [AppService],

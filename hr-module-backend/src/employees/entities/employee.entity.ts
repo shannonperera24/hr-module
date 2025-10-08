@@ -1,6 +1,7 @@
 import { CourtMartialRecord } from "src/court_martial_record/entities/court_martial_record.entity";
 import { DisciplinaryAction } from "src/disciplinary_action/entities/disciplinary_action.entity";
 import { EmployeeClearance } from "src/employee_clearance/entities/employee_clearance.entity";
+import { PayAndBenefit } from "src/pay_and_benefits/entities/pay_and_benefit.entity";
 import { Posting } from "src/posting/entities/posting.entity";
 import { ServiceHistory } from "src/service_history/entities/service_history.entity";
 import { User } from "src/users/entities/user.entity";
@@ -63,6 +64,9 @@ export class Employee {
 
     @OneToOne(() => User, (user) => user.employee)
     user: User;
+
+    @OneToOne(() => PayAndBenefit, (pay_and_benefits) => pay_and_benefits.employee)
+    pay_and_benefits: PayAndBenefit;
 
     @OneToOne(() => ServiceHistory, (service_history) => service_history.employee)
     service_history: ServiceHistory;
