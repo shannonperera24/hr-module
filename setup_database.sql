@@ -343,7 +343,7 @@ CREATE TABLE award (
 CREATE TABLE foreign_mission (
     foreign_mission_id SERIAL PRIMARY KEY,
     foreign_mission_country VARCHAR(50) NOT NULL,
-    foreign_mission_description TEXT
+    foreign_mission_description TEXT NOT NULL
 );
 
 --table: commendation

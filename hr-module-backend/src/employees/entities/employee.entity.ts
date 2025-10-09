@@ -1,12 +1,17 @@
 import { CourtMartialRecord } from "src/court_martial_record/entities/court_martial_record.entity";
 import { DisciplinaryAction } from "src/disciplinary_action/entities/disciplinary_action.entity";
+import { EmployeeAward } from "src/employee_award/entities/employee_award.entity";
 import { EmployeeClearance } from "src/employee_clearance/entities/employee_clearance.entity";
+import { EmployeeCommendation } from "src/employee_commendation/entities/employee_commendation.entity";
+import { EmployeeForeignMission } from "src/employee_foreign_mission/entities/employee_foreign_mission.entity";
+import { EmployeeSportingAchievement } from "src/employee_sporting_achievement/entities/employee_sporting_achievement.entity";
+import { MedicalAndHealthRecord } from "src/medical_and_health_record/entities/medical_and_health_record.entity";
 import { PayAndBenefit } from "src/pay_and_benefits/entities/pay_and_benefit.entity";
 import { Posting } from "src/posting/entities/posting.entity";
 import { QualificationRecord } from "src/qualification_record/entities/qualification_record.entity";
 import { ServiceHistory } from "src/service_history/entities/service_history.entity";
 import { User } from "src/users/entities/user.entity";
-import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Check, Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 export enum Gender {
     Male = 'Male',
@@ -20,6 +25,7 @@ export enum MaritalStatus {
 }
 
 @Entity('employee')
+@Check(`"number_of_children" >= 0`)
 export class Employee {
     @PrimaryGeneratedColumn()
     emp_no: number;
@@ -75,6 +81,9 @@ export class Employee {
     @OneToOne(() => QualificationRecord, (qualification_record) => qualification_record.employee)
     qualification_record: QualificationRecord;
 
+    @OneToOne(() => MedicalAndHealthRecord, (medical_and_health_record) => medical_and_health_record.employee)
+    medical_and_health_record: MedicalAndHealthRecord;
+
     @OneToMany(() => DisciplinaryAction, disciplinary_action => disciplinary_action.employee)
     disciplinary_actions: DisciplinaryAction[];
 
@@ -86,4 +95,16 @@ export class Employee {
 
     @OneToMany(() => EmployeeClearance, employee_clearance => employee_clearance.employee)
     employee_clearances: EmployeeClearance[];
+
+    @OneToMany(() => EmployeeAward, employee_award => employee_award.employee)
+    employee_awards: EmployeeAward[];
+
+    @OneToMany(() => EmployeeForeignMission, employee_foreign_mission => employee_foreign_mission.employee)
+    employee_foreign_missions: EmployeeForeignMission[];
+
+    @OneToMany(() => EmployeeCommendation, employee_commendation => employee_commendation.employee)
+    employee_commendations: EmployeeCommendation[];
+
+    @OneToMany(() => EmployeeSportingAchievement, employee_sporting_achievement => employee_sporting_achievement.employee)
+    employee_sporting_achievements: EmployeeSportingAchievement[];
 }

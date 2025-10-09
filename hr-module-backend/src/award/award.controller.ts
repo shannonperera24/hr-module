@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ValidationPipe, ParseIntPipe } from '@nestjs/common';
 import { AwardService } from './award.service';
 import { CreateAwardDto } from './dto/create-award.dto';
 import { UpdateAwardDto } from './dto/update-award.dto';
@@ -8,7 +8,7 @@ export class AwardController {
   constructor(private readonly awardService: AwardService) {}
 
   @Post()
-  create(@Body() createAwardDto: CreateAwardDto) {
+  create(@Body(ValidationPipe) createAwardDto: CreateAwardDto) {
     return this.awardService.create(createAwardDto);
   }
 
@@ -18,17 +18,17 @@ export class AwardController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.awardService.findOne(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.awardService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAwardDto: UpdateAwardDto) {
-    return this.awardService.update(+id, updateAwardDto);
+  update(@Param('id', ParseIntPipe) id: number, @Body(ValidationPipe) updateAwardDto: UpdateAwardDto) {
+    return this.awardService.update(id, updateAwardDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.awardService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.awardService.remove(id);
   }
 }

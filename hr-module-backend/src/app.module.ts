@@ -31,6 +31,15 @@ import { QualificationArmyTrainingCourseModule } from './qualification_army_trai
 import { QualificationLanguageModule } from './qualification_language/qualification_language.module';
 import { QualificationComputerSkillModule } from './qualification_computer_skill/qualification_computer_skill.module';
 import { AwardModule } from './award/award.module';
+import { ForeignMissionModule } from './foreign_mission/foreign_mission.module';
+import { CommendationModule } from './commendation/commendation.module';
+import { SportingAchievementModule } from './sporting_achievement/sporting_achievement.module';
+import { EmployeeAwardModule } from './employee_award/employee_award.module';
+import { EmployeeForeignMissionModule } from './employee_foreign_mission/employee_foreign_mission.module';
+import { EmployeeCommendationModule } from './employee_commendation/employee_commendation.module';
+import { EmployeeSportingAchievementModule } from './employee_sporting_achievement/employee_sporting_achievement.module';
+import { MedicalFitnessCategoryModule } from './medical_fitness_category/medical_fitness_category.module';
+import { MedicalAndHealthRecordModule } from './medical_and_health_record/medical_and_health_record.module';
 
 @Module({
   imports: [
@@ -74,6 +83,15 @@ import { AwardModule } from './award/award.module';
     QualificationLanguageModule,
     QualificationComputerSkillModule,
     AwardModule,
+    ForeignMissionModule,
+    CommendationModule,
+    SportingAchievementModule,
+    EmployeeAwardModule,
+    EmployeeForeignMissionModule,
+    EmployeeCommendationModule,
+    EmployeeSportingAchievementModule,
+    MedicalFitnessCategoryModule,
+    MedicalAndHealthRecordModule,
   ],
   controllers: [AppController],
   providers: [AppService],

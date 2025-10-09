@@ -1,38 +1,9 @@
 -- insert sample data for master tables
 
-INSERT INTO award (award_name) VALUES
-('Desha Putra Sammanaya'),
-('Rana Wickrama Padakkama'),
-('Rana Sura Padakkama'),
-('Uttama Seva Padakkama'),
-('Vishista Seva Vibhushanaya'),
-('Sri Lanka Armed Services Long Service Medal');
-
 INSERT INTO medical_fitness_category (fitness_category_name, fitness_category_description) VALUES
 ('A', 'Fully fit for all military duties'),
 ('B', 'Fit for limited military duties'),
 ('C', 'Unfit for field duty; office duties only');
-
-INSERT INTO commendation (commendation_name) VALUES
-('Commended by CO'),
-('Brigade Commander Commendation'),
-('Army Commander Appreciation'),
-('President’s Commendation');
-
-INSERT INTO sporting_achievement (sport, achievement) VALUES
-('Boxing', 'Won Army Championship'),
-('Athletics', 'Gold medal in 400m relay'),
-('Rugby', 'Captain of the Army team'),
-('Shooting', 'Top scorer in shooting competition'),
-('Swimming', 'Represented Sri Lanka Army at nationals');
-
-INSERT INTO foreign_mission (foreign_mission_country, foreign_mission_description) VALUES
-('Lebanon', 'UNIFIL peacekeeping mission deployment 2018-2019'),
-('South Sudan', 'UNMISS peacekeeping mission deployment 2020-2021'),
-('Cyprus', 'UNFICYP peacekeeping mission deployment 2017-2018'),
-('Sierra Leone', 'ECOMOG peacekeeping mission deployment 2002-2003'),
-('Somalia', 'AMISOM peacekeeping mission deployment 2015-2016');
-
 
 -- insert sample data for other tables in relation to 10 employees
 
@@ -45,25 +16,6 @@ INSERT INTO medical_history (medical_history_date, medical_history_description, 
 ('2021-05-01', 'Fractured ankle during training', 1),
 ('2022-02-15', 'Seasonal flu', 2),
 ('2020-09-10', 'Minor surgery – appendicitis', 3);
-
-INSERT INTO employee_receives_award (emp_no, award_id, award_date) VALUES
-(1, 1, '2021-03-01'),
-(2, 2, '2022-07-15'),
-(3, 3, '2019-11-25');
-
-INSERT INTO employee_receives_foreign_mission (emp_no, foreign_mission_id, foreign_mission_date) VALUES
-(1, 1, '2018-01-10'),
-(2, 2, '2020-04-05');
-
-INSERT INTO employee_receives_commendation (emp_no, commendation_id, commendation_date) VALUES
-(1, 1, '2020-10-01'),
-(3, 3, '2019-06-01');
-
-INSERT INTO employee_receives_sporting_achievement (emp_no, sporting_achievement_id, achievement_date) VALUES
-(2, 1, '2021-03-10'),
-(4, 2, '2022-05-05');
-
-
 
 
 -- insert sample data through postman post requests (json)
@@ -215,6 +167,63 @@ INSERT INTO employee_receives_sporting_achievement (emp_no, sporting_achievement
 { "computer_skill_name": "Web Development" }
 { "computer_skill_name": "Network Administration" }
 
+-- award table
+{ "award_name": "Desha Putra Sammanaya" }
+{ "award_name": "Rana Wickrama Padakkama" }
+{ "award_name": "Rana Sura Padakkama" }
+{ "award_name": "Uttama Seva Padakkama" }
+{ "award_name": "Vishista Seva Vibhushanaya" }
+{ "award_name": "Sri Lanka Armed Services Long Service Medal" }
+
+-- foreign_mission table
+{
+  "foreign_mission_country": "Lebanon",
+  "foreign_mission_description": "UNIFIL peacekeeping mission deployment 2018-2019"
+}
+{
+  "foreign_mission_country": "South Sudan",
+  "foreign_mission_description": "UNMISS peacekeeping mission deployment 2020-2021"
+}
+{
+  "foreign_mission_country": "Cyprus",
+  "foreign_mission_description": "UNFICYP peacekeeping mission deployment 2017-2018"
+}
+{
+  "foreign_mission_country": "Sierra Leone",
+  "foreign_mission_description": "ECOMOG peacekeeping mission deployment 2002-2003"
+}
+{
+  "foreign_mission_country": "Somalia",
+  "foreign_mission_description": "AMISOM peacekeeping mission deployment 2015-2016"
+}
+
+-- commendation table
+{ "commendation_name": "Commended by CO" }
+{ "commendation_name": "Brigade Commander Commendation" }
+{ "commendation_name": "Army Commander Appreciation" }
+{ "commendation_name": "President’s Commendation" }
+
+-- sporting_achievement table
+{
+  "sport": "Boxing",
+  "achievement": "Won Army Championship"
+}
+{
+  "sport": "Athletics",
+  "achievement": "Gold medal in 400m relay"
+}
+{
+  "sport": "Rugby",
+  "achievement": "Captain of the Army team"
+}
+{
+  "sport": "Shooting",
+  "achievement": "Top scorer in shooting competition"
+}
+{
+  "sport": "Swimming",
+  "achievement": "Represented Sri Lanka Army at nationals"
+}
 
 
 -- OTHER TABLES
@@ -792,4 +801,57 @@ INSERT INTO employee_receives_sporting_achievement (emp_no, sporting_achievement
 {
   "qualification_record_id": 3,
   "computer_skill_id": 4
+}
+
+-- employee_award table
+{
+  "emp_no": 1,
+  "award_id": 1,
+  "award_date": "2021-03-01"
+}
+{
+  "emp_no": 2,
+  "award_id": 2,
+  "award_date": "2022-07-15"
+}
+{
+  "emp_no": 3,
+  "award_id": 3,
+  "award_date": "2019-11-25"
+}
+
+-- employee_foreign_mission table
+{
+  "emp_no": 1,
+  "foreign_mission_id": 1,
+  "foreign_mission_date": "2018-01-10"
+}
+{
+  "emp_no": 2,
+  "foreign_mission_id": 2,
+  "foreign_mission_date": "2020-04-05"
+}
+
+-- employee_commendation table
+{
+  "emp_no": 1,
+  "commendation_id": 1,
+  "commendation_date": "2020-10-01"
+}
+{
+  "emp_no": 3,
+  "commendation_id": 3,
+  "commendation_date": "2019-06-01"
+}
+
+-- employee_sporting_achievement table
+{
+  "emp_no": 2,
+  "sporting_achievement_id": 1,
+  "achievement_date": "2021-03-10"
+}
+{
+  "emp_no": 4,
+  "sporting_achievement_id": 2,
+  "achievement_date": "2022-05-05"
 }
