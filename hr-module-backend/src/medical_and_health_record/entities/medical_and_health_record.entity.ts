@@ -1,6 +1,7 @@
 import { Employee } from "src/employees/entities/employee.entity";
 import { MedicalFitnessCategory } from "src/medical_fitness_category/entities/medical_fitness_category.entity";
-import { Check, Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { MedicalHistory } from "src/medical_history/entities/medical_history.entity";
+import { Check, Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 export enum BloodGroup {
     A_Pos = 'A+',
@@ -52,4 +53,7 @@ export class MedicalAndHealthRecord {
     @ManyToOne(() => MedicalFitnessCategory)
     @JoinColumn({ name: 'medical_fitness_category_id' })
     medical_fitness_category: MedicalFitnessCategory;
+
+    @OneToMany(() => MedicalHistory, medical_history => medical_history.medical_and_health_record)
+    medical_histories: MedicalHistory[];
 }

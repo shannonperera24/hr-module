@@ -1,26 +1,6 @@
--- insert sample data for master tables
-
-INSERT INTO medical_fitness_category (fitness_category_name, fitness_category_description) VALUES
-('A', 'Fully fit for all military duties'),
-('B', 'Fit for limited military duties'),
-('C', 'Unfit for field duty; office duties only');
-
--- insert sample data for other tables in relation to 10 employees
-
-INSERT INTO medical_and_health_record (blood_group, height_cm, weight_kg, bmi, medical_check_date, disability, emp_no, medical_fitness_category_id) VALUES
-('A+', 170.5, 70.2, 24.1, '2023-06-01', NULL, 1, 1),
-('B+', 165.0, 60.0, 22.0, '2023-06-01', 'Knee pain', 2, 2),
-('O-', 180.0, 85.0, 26.2, '2023-06-01', NULL, 3, 1);
-
-INSERT INTO medical_history (medical_history_date, medical_history_description, medical_and_health_record_id) VALUES
-('2021-05-01', 'Fractured ankle during training', 1),
-('2022-02-15', 'Seasonal flu', 2),
-('2020-09-10', 'Minor surgery – appendicitis', 3);
-
-
 -- insert sample data through postman post requests (json)
 
--- MASTER TABLES
+-- MASTER TABLES:
 
 -- army_rank table
 {"rank_name": "Private"}
@@ -225,8 +205,23 @@ INSERT INTO medical_history (medical_history_date, medical_history_description, 
   "achievement": "Represented Sri Lanka Army at nationals"
 }
 
+-- medical_fitness_category table
+{
+  "fitness_category_name": "A",
+  "fitness_category_description": "Fully fit for all military duties"
+}
+{
+  "fitness_category_name": "B",
+  "fitness_category_description": "Fit for limited military duties"
+}
+{
+  "fitness_category_name": "C",
+  "fitness_category_description": "Unfit for field duty; office duties only"
+}
 
--- OTHER TABLES
+
+
+-- OTHER TABLES:
 
 -- employee table (10 employees)
 {
@@ -854,4 +849,53 @@ INSERT INTO medical_history (medical_history_date, medical_history_description, 
   "emp_no": 4,
   "sporting_achievement_id": 2,
   "achievement_date": "2022-05-05"
+}
+
+-- medical_and_health_record table
+{
+  "blood_group": "A+",
+  "height_cm": 170.5,
+  "weight_kg": 70.2,
+  "bmi": 24.1,
+  "medical_check_date": "2023-06-01",
+  "disability": null,
+  "emp_no": 1,
+  "medical_fitness_category_id": 1
+}
+{
+  "blood_group": "B+",
+  "height_cm": 165.0,
+  "weight_kg": 60.0,
+  "bmi": 22.0,
+  "medical_check_date": "2023-06-01",
+  "disability": "Knee pain",
+  "emp_no": 2,
+  "medical_fitness_category_id": 2
+}
+{
+  "blood_group": "O-",
+  "height_cm": 180.0,
+  "weight_kg": 85.0,
+  "bmi": 26.2,
+  "medical_check_date": "2023-06-01",
+  "disability": null,
+  "emp_no": 3,
+  "medical_fitness_category_id": 1
+}
+
+-- medical_history table
+{
+  "medical_history_date": "2021-05-01",
+  "medical_history_description": "Fractured ankle during training",
+  "medical_and_health_record_id": 1
+}
+{
+  "medical_history_date": "2022-02-15",
+  "medical_history_description": "Seasonal flu",
+  "medical_and_health_record_id": 2
+}
+{
+  "medical_history_date": "2020-09-10",
+  "medical_history_description": "Minor surgery – appendicitis",
+  "medical_and_health_record_id": 3
 }

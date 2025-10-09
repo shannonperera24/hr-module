@@ -40,6 +40,7 @@ import { EmployeeCommendationModule } from './employee_commendation/employee_com
 import { EmployeeSportingAchievementModule } from './employee_sporting_achievement/employee_sporting_achievement.module';
 import { MedicalFitnessCategoryModule } from './medical_fitness_category/medical_fitness_category.module';
 import { MedicalAndHealthRecordModule } from './medical_and_health_record/medical_and_health_record.module';
+import { MedicalHistoryModule } from './medical_history/medical_history.module';
 
 @Module({
   imports: [
@@ -92,6 +93,7 @@ import { MedicalAndHealthRecordModule } from './medical_and_health_record/medica
     EmployeeSportingAchievementModule,
     MedicalFitnessCategoryModule,
     MedicalAndHealthRecordModule,
+    MedicalHistoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
