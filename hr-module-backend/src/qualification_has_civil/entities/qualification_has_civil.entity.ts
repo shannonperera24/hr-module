@@ -1,8 +1,9 @@
 import { CivilQualification } from "src/civil_qualification/entities/civil_qualification.entity";
 import { QualificationRecord } from "src/qualification_record/entities/qualification_record.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Unique } from "typeorm";
 
 @Entity('qualification_has_civil')
+@Unique(['qualification_record_id', 'civil_qualification_id'])
 export class QualificationHasCivil {
     @PrimaryGeneratedColumn()
     qualification_has_civil_id: number;

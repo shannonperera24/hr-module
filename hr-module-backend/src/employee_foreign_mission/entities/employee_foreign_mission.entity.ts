@@ -1,8 +1,9 @@
 import { Employee } from "src/employees/entities/employee.entity";
 import { ForeignMission } from "src/foreign_mission/entities/foreign_mission.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Unique } from "typeorm";
 
 @Entity('employee_foreign_mission')
+@Unique(['emp_no', 'foreign_mission_id', 'foreign_mission_date'])
 export class EmployeeForeignMission {
     @PrimaryGeneratedColumn()
     employee_foreign_mission_id: number;

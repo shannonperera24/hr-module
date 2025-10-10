@@ -1,8 +1,9 @@
 import { Employee } from "src/employees/entities/employee.entity";
 import { SportingAchievement } from "src/sporting_achievement/entities/sporting_achievement.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Unique } from "typeorm";
 
 @Entity('employee_sporting_achievement')
+@Unique(['emp_no', 'sporting_achievement_id', 'achievement_date'])
 export class EmployeeSportingAchievement {
     @PrimaryGeneratedColumn()
     employee_sporting_achievement_id: number;

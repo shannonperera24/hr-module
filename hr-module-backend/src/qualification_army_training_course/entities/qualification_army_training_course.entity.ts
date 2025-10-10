@@ -1,8 +1,9 @@
 import { ArmyTrainingCourse } from "src/army_training_course/entities/army_training_course.entity";
 import { QualificationRecord } from "src/qualification_record/entities/qualification_record.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Unique } from "typeorm";
 
 @Entity('qualification_army_training_course')
+@Unique(['qualification_record_id', 'course_id'])
 export class QualificationArmyTrainingCourse {
     @PrimaryGeneratedColumn()
     qualification_course_id: number;

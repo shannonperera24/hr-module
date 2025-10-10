@@ -1,6 +1,6 @@
 import { Allowance } from "src/allowance/entities/allowance.entity";
 import { PayAndBenefit } from "src/pay_and_benefits/entities/pay_and_benefit.entity";
-import { Check, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Check, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Unique } from "typeorm";
 
 export enum AllowanceStatus {
     Active = 'Active',
@@ -9,6 +9,7 @@ export enum AllowanceStatus {
 }
 
 @Entity('employee_allowance')
+@Unique(['pay_and_benefits_id', 'allowance_id'])
 @Check(`"allowance_amount" >= 0`)
 export class EmployeeAllowance {
     @PrimaryGeneratedColumn()

@@ -1,8 +1,9 @@
 import { Commendation } from "src/commendation/entities/commendation.entity";
 import { Employee } from "src/employees/entities/employee.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Unique } from "typeorm";
 
 @Entity('employee_commendation')
+@Unique(['emp_no', 'commendation_id', 'commendation_date'])
 export class EmployeeCommendation {
     @PrimaryGeneratedColumn()
     employee_commendation_id: number;

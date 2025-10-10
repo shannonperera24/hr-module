@@ -1,8 +1,9 @@
 import { LanguageProficiency } from "src/language_proficiency/entities/language_proficiency.entity";
 import { QualificationRecord } from "src/qualification_record/entities/qualification_record.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Unique } from "typeorm";
 
 @Entity('qualification_language')
+@Unique(['qualification_record_id', 'language_id'])
 export class QualificationLanguage {
     @PrimaryGeneratedColumn()
     qualification_language_id: number;

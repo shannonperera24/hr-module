@@ -1,6 +1,6 @@
 import { Employee } from "src/employees/entities/employee.entity";
 import { SecurityClearance } from "src/security_clearance/entities/security_clearance.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Unique } from "typeorm";
 
 export enum ClearanceStatus {
     Active = 'Active',
@@ -10,6 +10,7 @@ export enum ClearanceStatus {
 }
 
 @Entity('employee_clearance')
+@Unique(['emp_no', 'security_clearance_id'])
 export class EmployeeClearance {
     @PrimaryGeneratedColumn()
     employee_clearance_id: number;

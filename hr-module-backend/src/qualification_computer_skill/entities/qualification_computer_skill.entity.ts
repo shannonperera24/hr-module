@@ -1,8 +1,9 @@
 import { ComputerSkill } from "src/computer_skill/entities/computer_skill.entity";
 import { QualificationRecord } from "src/qualification_record/entities/qualification_record.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Unique } from "typeorm";
 
 @Entity('qualification_computer_skill')
+@Unique(['qualification_record_id', 'computer_skill_id'])
 export class QualificationComputerSkill {
     @PrimaryGeneratedColumn()
     qualification_computer_skill_id: number;
