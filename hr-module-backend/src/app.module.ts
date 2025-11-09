@@ -41,6 +41,7 @@ import { EmployeeSportingAchievementModule } from './employee_sporting_achieveme
 import { MedicalFitnessCategoryModule } from './medical_fitness_category/medical_fitness_category.module';
 import { MedicalAndHealthRecordModule } from './medical_and_health_record/medical_and_health_record.module';
 import { MedicalHistoryModule } from './medical_history/medical_history.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -94,6 +95,7 @@ import { MedicalHistoryModule } from './medical_history/medical_history.module';
     MedicalFitnessCategoryModule,
     MedicalAndHealthRecordModule,
     MedicalHistoryModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

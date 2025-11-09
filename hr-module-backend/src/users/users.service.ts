@@ -49,4 +49,13 @@ export class UsersService {
       throw new NotFoundException(`User with ID ${user_id} not found`);
     }
   }
+  
+  //for authentication
+  async findUserByName(username: string): Promise<User | undefined> {
+    const user = await this.usersRepository.findOneBy({ username });
+    if (!user) {
+      throw new NotFoundException(`User with username ${username} not found`);
+    }
+    return user;
+  }
 }
