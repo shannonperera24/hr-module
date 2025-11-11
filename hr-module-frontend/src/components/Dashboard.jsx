@@ -1,149 +1,114 @@
-import React from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import axios from "axios";
-import "./style.css";
+import { useEffect, useState } from "react";
+import routeTitles from "../config/routeTitles";
 
 const Dashboard = () => {
-  const navigate = useNavigate()
-  axios.defaults.withCredentials = true
+  const navigate = useNavigate();
+  axios.defaults.withCredentials = true;
+
+  const [user, setUser] = useState({
+    username: '',
+    user_role: ''
+  });
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem('username');
+    const storedUserRole = localStorage.getItem('user_role');
+
+    if (storedUsername && storedUserRole) {
+      setUser({ username: storedUsername, user_role: storedUserRole });
+    }
+  }, []);
+
   const handleLogout = () => {
-    axios.get('http://localhost:3000/auth/logout')
-    .then(result => {
-      if(result.data.Status) { 
-        localStorage.removeItem("valid")
-        navigate('/')
-      }
-    })
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    localStorage.removeItem("user_role");
+    navigate('/');
   }
+
+  const location = useLocation();
+  const currentTitle = routeTitles[location.pathname] || 'Pay & Record System';
+
   return (
-    <div className="container-fluid dashboard-container">
-      <div className="row flex-nowrap">
-        <div className="col-auto col-md-4 col-the fxl-3 px-sm-2 px-0 bg-dark">
-          <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-            <Link
-              to="/dashboard"
-              className="d-flex align-items-center pb-3 mb-md-1 mt-md-3 me-md-auto text-white text-decoration-none"
-            >
-              <span className="fs-5 fw-bolder d-none d-sm-inline">
-                Sri Lanka Army
-              </span>
-            </Link>
-            <ul
-              className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
-              id="menu"
-            >
-              <li className="w-100">
-                <Link
-                  to="/dashboard"
-                  className="nav-link text-white px-0 align-middle"
-                >
-                  <i className="fs-4 bi-speedometer2 ms-2"></i>
-                  <span className="ms-2 d-none d-sm-inline">Dashboard</span>
-                </Link>
-              </li>
-              <li className="w-100">
-                <Link
-                  to="/dashboard/employee"
-                  className="nav-link px-0 align-middle text-white"
-                >
-                  <i className="fs-4 bi-people ms-2"></i>
-                  <span className="ms-2 d-none d-sm-inline">
-                    Employee Management
-                  </span>
-                </Link>
-              </li>
-              <li className="w-100">
-                <Link
-                  to="/dashboard/posting"
-                  className="nav-link px-0 align-middle text-white"
-                >
-                  <i className="fs-4 bi-people ms-2"></i>
-                  <span className="ms-2 d-none d-sm-inline">
-                    Posting Management
-                  </span>
-                </Link>
-              </li>
-              <li className="w-100">
-                <Link
-                  to="/dashboard/pay"
-                  className="nav-link px-0 align-middle text-white"
-                >
-                  <i className="fs-4 bi-people ms-2"></i>
-                  <span className="ms-2 d-none d-sm-inline">
-                    Pay & Allowance Management
-                  </span>
-                </Link>
-              </li>
-              <li className="w-100">
-                <Link
-                  to="/dashboard/qualification"
-                  className="nav-link px-0 align-middle text-white"
-                >
-                  <i className="fs-4 bi-people ms-2"></i>
-                  <span className="ms-2 d-none d-sm-inline">
-                    Qualification & Training Management
-                  </span>
-                </Link>
-              </li>
-              <li className="w-100">
-                <Link
-                  to="/dashboard/medical"
-                  className="nav-link px-0 align-middle text-white"
-                >
-                  <i className="fs-4 bi-people ms-2"></i>
-                  <span className="ms-2 d-none d-sm-inline">
-                    Medical Record Management
-                  </span>
-                </Link>
-              </li>
-              <li className="w-100">
-                <Link
-                  to="/dashboard/security"
-                  className="nav-link px-0 align-middle text-white"
-                >
-                  <i className="fs-4 bi-people ms-2"></i>
-                  <span className="ms-2 d-none d-sm-inline">
-                    Security Clearance Management
-                  </span>
-                </Link>
-              </li>
-              <li className="w-100">
-                <Link
-                  to="/dashboard/awards"
-                  className="nav-link px-0 align-middle text-white"
-                >
-                  <i className="fs-4 bi-people ms-2"></i>
-                  <span className="ms-2 d-none d-sm-inline">
-                    Awards & Achievements
-                  </span>
-                </Link>
-              </li>
-              <li className="w-100">
-                <Link
-                  to="/dashboard/profile"
-                  className="nav-link px-0 align-middle text-white"
-                >
-                  <i className="fs-4 bi-person ms-2"></i>
-                  <span className="ms-2 d-none d-sm-inline">My Profile</span>
-                </Link>
-              </li>
-              <li className="w-100" onClick={handleLogout}>
-              <Link
-                  className="nav-link px-0 align-middle text-white"
-                >
-                  <i className="fs-4 bi-power ms-2"></i>
-                  <span className="ms-2 d-none d-sm-inline">Logout</span>
-                </Link>
-              </li>
-            </ul>
+    <div className="dashboard-wrapper">
+      <div className="sidebar">
+        <div className="sidebar-header">
+          <h5 className="sidebar-title">Sri Lanka Army</h5>
+        </div>
+        <div className="sidebar-user">
+          <i className="bi-person-circle sidebar-user-icon"></i>
+          <div className="sidebar-user-info">
+            <p className="username">{ user.username }</p>
+            <small className="user-role">{ user.user_role }</small>
           </div>
         </div>
-        <div className="col p-0 m-0">
-            <div className="p-2 d-flex justify-content-center shadow">
-                <h4>Pay & Record System</h4>
-            </div>
-            <Outlet />
+
+        <ul className="nav flex-column">
+          <li>
+            <Link to="/dashboard" className="nav-link">
+              <i className="bi-speedometer2 me-2"></i> Dashboard
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard/employee" className="nav-link">
+              <i className="bi-people me-2"></i> Employee Management
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard/posting" className="nav-link">
+              <i className="bi-briefcase me-2"></i> Posting Management
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard/pay" className="nav-link">
+              <i className="bi-cash-stack me-2"></i> Pay & Allowance
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard/qualification" className="nav-link">
+              <i className="bi-award me-2"></i> Qualification & Training
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard/medical" className="nav-link">
+              <i className="bi-heart-pulse me-2"></i> Medical Records
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard/security" className="nav-link">
+              <i className="bi-shield-lock me-2"></i> Security Clearance
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard/awards" className="nav-link">
+              <i className="bi-trophy me-2"></i> Awards & Achievements
+            </Link>
+          </li>
+
+          <div className="nav-separator"></div>
+
+          <li>
+            <Link to="/dashboard/profile" className="nav-link">
+              <i className="bi-person me-2"></i> Profile
+            </Link>
+          </li>
+          <li onClick={handleLogout}>
+            <Link className="nav-link logout-link">
+              <i className="bi-power me-2"></i> Logout
+            </Link>
+          </li>
+        </ul>
+      </div>
+
+      <div className="main-content">
+        <div className="dashboard-header shadow-sm">
+          <h4>{currentTitle}</h4>
+        </div>
+        <div className="dashboard-body">
+          <Outlet />
         </div>
       </div>
     </div>

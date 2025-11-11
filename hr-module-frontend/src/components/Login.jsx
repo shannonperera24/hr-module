@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './style.css'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
@@ -23,10 +22,12 @@ const Login = () => {
                 headers: { 'Content-Type': 'application/json' }
             });
 
-            const { accessToken } = response.data;
+            const { accessToken, username, user_role } = response.data;
 
             if (accessToken) {
                 localStorage.setItem('token', accessToken);
+                localStorage.setItem('username', username);
+                localStorage.setItem('user_role', user_role);
                 navigate('/dashboard');
             } else {
                 setError('Login failed. No token received.');

@@ -4,8 +4,8 @@ import { UsersService } from 'src/users/users.service';
 import * as bcrypt from 'bcrypt';
 
 type AuthInput = { username: string; password_hash: string };
-type SignInData = { user_id: number; username: string };
-type AuthResult = { accessToken: string; user_id: number; username: string };
+type SignInData = { user_id: number; username: string; user_role: string };
+type AuthResult = { accessToken: string; user_id: number; username: string; user_role: string };
 
 @Injectable()
 export class AuthService {
@@ -24,7 +24,8 @@ export class AuthService {
         if (isPasswordValid) {
             return {
                 user_id: user.user_id,
-                username: user.username
+                username: user.username,
+                user_role: user.user_role
             }
         }
         
@@ -34,11 +35,12 @@ export class AuthService {
     async signIn(user: SignInData): Promise<AuthResult> {
         const tokenPayload = {
             sub: user.user_id,
-            username: user.username
+            username: user.username,
+            user_role: user.user_role
         }
 
         const accessToken = await this.jwtService.signAsync(tokenPayload);
 
-        return { accessToken, username: user.username, user_id: user.user_id };
+        return { accessToken, username: user.username, user_id: user.user_id, user_role: user.user_role };
     }
 }

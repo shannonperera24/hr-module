@@ -52,6 +52,7 @@ export class CreateEmployeeDto {
     spouse_name?: string;
 
     @Min(0)
+    @Type(() => Number)
     @IsInt()
     @IsNotEmpty()
     number_of_children: number = 0;

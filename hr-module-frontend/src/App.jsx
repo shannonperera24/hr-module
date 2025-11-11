@@ -1,7 +1,7 @@
-import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import {BrowserRouter, Routes, Route, useLocation} from 'react-router-dom'
 import { useEffect } from 'react'
+
+import routeTitles from './config/routeTitles'
 
 import Login from './components/Login'
 import Dashboard from './components/Dashboard'
@@ -20,12 +20,8 @@ function TitleHandler() {
   const location = useLocation();
 
   useEffect(() => {
-    const routeTitles = {
-      '/': 'Login | Pay & Record System',
-      '/dashboard': 'Dashboard | Pay & Record System'
-    }
-
-    const title = routeTitles[location.pathname] || 'Pay & Record System'; 
+    const title = routeTitles[location.pathname]
+      ?`${routeTitles[location.pathname]} | Pay & Record System`: 'Pay & Record System';
     document.title = title;
   }, [location.pathname]);
 
@@ -36,20 +32,22 @@ function TitleHandler() {
 function App() {
   return (
     <BrowserRouter>
-      <TitleHandler /> {}
+      <TitleHandler />
       
       <Routes>
         <Route path='/' element={<Login />} />
-        <Route path='/dashboard' element={<Dashboard />} />
-        <Route path='/dashboard/employee' element={<Employee />} />    
-        <Route path='/dashboard/posting' element={<Posting />} />
-        <Route path='/dashboard/pay' element={<Pay />} />
-        <Route path='/dashboard/qualification' element={<Qualification />} />
-        <Route path='/dashboard/medical' element={<Medical />} />
-        <Route path='/dashboard/security' element={<Security />} />
-        <Route path='/dashboard/awards' element={<Awards />} />
-        <Route path='/dashboard/profile' element={<Profile />} />
-        <Route path='/dashboard/add_employee' element={<AddEmployee />} />
+        <Route path='/dashboard' element={<Dashboard />}>
+          <Route index element={<Home />} />
+          <Route path='employee' element={<Employee />} />    
+          <Route path='add_employee' element={<AddEmployee />} />
+          <Route path='posting' element={<Posting />} />
+          <Route path='pay' element={<Pay />} />
+          <Route path='qualification' element={<Qualification />} />
+          <Route path='medical' element={<Medical />} />
+          <Route path='security' element={<Security />} />
+          <Route path='awards' element={<Awards />} />
+          <Route path='profile' element={<Profile />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   )

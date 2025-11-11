@@ -1,14 +1,78 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const Employee = () => {
+  const [employees, setEmployees] = useState([])
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/employee')
+      .then(res => setEmployees(res.data))
+      .catch(err => console.error('Error fetching employees', err))
+  }, [])
+
+  const [searchTerm, setSearchTerm] = useState('')
+
+  const filteredEmployees = employees.filter(emp =>
+    emp.full_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    emp.emp_no.toString().includes(searchTerm)
+  )
+
   return (
-    <div className='px-5 mt-3'>
-      <div className='d-flex justify-content-center'>
-        <h3>Employee Management</h3>
+    <div className='employee-page px-5 mt-4'>
+      <div className='add-button mb-3'>
+        <Link to="/dashboard/add_employee" className="btn btn-success">
+          <i className='bi bi-person-plus me-2'></i>Add Employee
+        </Link>
       </div>
-      <Link to='/dashboard/add_employee' className='btn btn-success'>Add Employee</Link>
+
+      <div className='search-bar mb-3'>
+        <i className='bi bi-search'></i>
+        <input type='text' className='form-control' placeholder='Search...'
+        value={searchTerm} 
+        onChange={(e) => setSearchTerm(e.target.value)}/>
+      </div>
+      
+      <div className='table-responsive'>
+        <table className='employee-table table table-hover align-middle'>
+          <thead>
+            <tr>
+              <th scope='col'>Emp No</th>
+              <th scope='col'>Name</th>
+              <th scope='col'>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredEmployees.length > 0 ? (
+              filteredEmployees.map((emp) => (
+                <tr key={emp.emp_no}>
+                  <td>{emp.emp_no}</td>
+                  <td>{emp.full_name}</td>
+                  <td>
+                    <button className='btn btn-outline-info btn-sm me-2'>
+                      <i className='bi bi-eye'></i> View
+                    </button>
+                    <button className='btn btn-outline-warning btn-sm me-2'>
+                      <i className='bi bi-pencil'></i> Edit
+                    </button>
+                    <button className='btn btn-outline-danger btn-sm me-2'>
+                      <i className='bi bi-trash'></i> Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan='3' className='text-center text-muted'>
+                  No employees found
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
+    
   )
 }
 
