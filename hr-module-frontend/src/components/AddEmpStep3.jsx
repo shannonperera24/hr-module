@@ -91,7 +91,6 @@ const AddEmpStep3 = ({ formData, handleChange, handlePostingSubmit }) => {
                     ))}
                     </select>
                 </div>
-
                 <div className="col-md-6">
                     <label className="form-label">Special Duty (Optional)</label>
                     <select name="special_duty_id" className="form-select"
@@ -104,7 +103,6 @@ const AddEmpStep3 = ({ formData, handleChange, handlePostingSubmit }) => {
                     ))}
                     </select>
                 </div>
-
                 <div className="col-md-6">
                     <label className="form-label">Overseas Posting (Optional)</label>
                     <select name="overseas_posting_id" className="form-select"
