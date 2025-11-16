@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
-import Swal from "sweetalert2"
-import { toast } from 'react-toastify'
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 
-const Posting = () => {
+const ViewEmpPos = () => {
+  const { emp_no } = useParams();
   const [postings, setPostings] = useState([]);
   const [ranks, setRanks] = useState([]);
   const [corps, setCorps] = useState([]);
@@ -12,8 +13,6 @@ const Posting = () => {
   const [appointments, setAppointments] = useState([]);
   const [specialDuties, setSpecialDuties] = useState([]);
   const [overseasPostings, setOverseasPostings] = useState([]);
-
-  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const loadData = async () => {
@@ -28,7 +27,10 @@ const Posting = () => {
           axios.get("http://localhost:3000/special_duty"),
           axios.get("http://localhost:3000/overseas_posting"),
         ]);
-        setPostings(postingRes.data);
+        const filtered = postingRes.data.filter(
+          (p) => p.emp_no === Number(emp_no)
+        );
+        setPostings(filtered);
         setRanks(rankRes.data);
         setCorps(corpRes.data);
         setUnits(unitRes.data);
@@ -40,7 +42,7 @@ const Posting = () => {
       }
     };
     loadData();
-  }, []);
+  }, [emp_no]);
 
   const getRankName = (id) =>
     ranks.find((r) => r.rank_id === id)?.rank_name || "N/A";
@@ -63,11 +65,6 @@ const Posting = () => {
   const getOverseasPostingName = (id) =>
     overseasPostings.find((o) => o.overseas_posting_id === id)
       ?.overseas_posting_type || "None";
-
-  const filteredPostings = postings.filter((p) =>
-    p.emp_no?.toString().includes(searchTerm) ||
-    p.posting_id?.toString().includes(searchTerm)
-  );
 
   const handleDelete = async (posting_id) => {
     const result = await Swal.fire({
@@ -94,41 +91,36 @@ const Posting = () => {
   };
 
   return (
-    <div className='employee-page px-5 mt-4'>
+    <div className="table-responsive p-4 mb-4">
+      <h3 className="employee-detail-heading fs-5 text-start fw-semibold mb-3">
+        Posting Information
+      </h3>
+
       <div className='add-button mb-3'>
-        <Link to="/dashboard/add_posting" className="btn btn-success">
+        <Link to="/dashboard/add_posting" className="btn btn-success"
+          state={{ emp_no: Number(emp_no) }}>
           <i className='bi bi-person-plus me-2'></i>Add Posting
         </Link>
       </div>
-
-      <div className='search-bar mb-3'>
-        <i className='bi bi-search'></i>
-        <input type='text' className='form-control' placeholder='Search...'
-        value={searchTerm} 
-        onChange={(e) => setSearchTerm(e.target.value)}/>
-      </div>
-      
       <div className='table-responsive'>
         <table className='details-table table table-hover align-middle'>
           <thead>
             <tr>
-              <th scope='col'>Emp No</th>
-              <th>Rank</th>
-              <th>Corp</th>
-              <th>Unit</th>
-              <th>Appointment</th>
-              <th>Special Duty</th>
-              <th>Overseas Posting</th>
-              <th>From</th>
-              <th>To</th>
+              <th scope='col'>Rank</th>
+              <th scope='col'>Corp</th>
+              <th scope='col'>Unit</th>
+              <th scope='col'>Appointment</th>
+              <th scope='col'>Special Duty</th>
+              <th scope='col'>Overseas Posting</th>
+              <th scope='col'>From</th>
+              <th scope='col'>To</th>
               <th scope='col'>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {filteredPostings.length > 0 ? (
-              filteredPostings.map((p) => (
+            {postings.length > 0 ? (
+              postings.map((p) => (
                 <tr key={p.posting_id}>
-                  <td>{p.emp_no}</td> 
                   <td>{getRankName(p.rank_id)}</td>
                   <td>{getCorpName(p.corp_and_regiment_id)}</td>
                   <td>{getUnitName(p.unit_id)}</td>
@@ -163,4 +155,4 @@ const Posting = () => {
   )
 }
 
-export default Posting
+export default ViewEmpPos

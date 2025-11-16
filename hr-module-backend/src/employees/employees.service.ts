@@ -18,11 +18,24 @@ export class EmployeesService {
   }
 
   findAll(): Promise<Employee[]> {
-    return this.employeeRepository.find();
+    return this.employeeRepository.find({
+      where: { is_deleted: false }
+    });
   }
 
   async findOne(emp_no: number): Promise<Employee> {
-    const employee = await this.employeeRepository.findOneBy({ emp_no });
+    const employee = await this.employeeRepository.findOne({ 
+      where: { emp_no, is_deleted: false },
+      relations: [
+        'service_history',
+        'postings',
+        'pay_and_benefits',
+        'qualification_record',
+        'medical_and_health_record',
+        'employee_clearances'
+      ]
+    });
+    
     if (!employee) {
       throw new NotFoundException(`Employee with ID ${emp_no} not found`);
     }
@@ -30,15 +43,17 @@ export class EmployeesService {
   }
 
   async update(emp_no: number, updateEmployeeDto: UpdateEmployeeDto): Promise<Employee> {
-    const result = await this.employeeRepository.update(emp_no, updateEmployeeDto);
+    const result = await this.employeeRepository.update(
+      { emp_no, is_deleted: false }, updateEmployeeDto);
     if (result.affected === 0) {
       throw new NotFoundException(`Employee with ID ${emp_no} not found`);
     }
     return this.findOne(emp_no);
   }
 
-  async remove(emp_no: number): Promise <void> {
-    const result = await this.employeeRepository.delete(emp_no);
+  async softDelete(emp_no: number): Promise <void> {
+    const result = await this.employeeRepository.update(
+      { emp_no, is_deleted: false }, { is_deleted: true });
     if (result.affected === 0) {
       throw new NotFoundException(`Employee with ID ${emp_no} not found`);
     }

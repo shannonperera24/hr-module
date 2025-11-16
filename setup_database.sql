@@ -469,3 +469,5 @@ CREATE TABLE users (
 
     FOREIGN KEY (emp_no) REFERENCES employee(emp_no)
 );
+
+ALTER TABLE employee ADD COLUMN is_deleted BOOLEAN DEFAULT FALSE;

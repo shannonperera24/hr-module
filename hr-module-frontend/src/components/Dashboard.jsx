@@ -30,7 +30,12 @@ const Dashboard = () => {
   }
 
   const location = useLocation();
-  const currentTitle = routeTitles[location.pathname] || 'Pay & Record System';
+
+  const matchedPath = Object.keys(routeTitles)
+    .sort((a, b) => b.length - a.length) 
+    .find((path) => location.pathname.startsWith(path));
+
+  const currentTitle = routeTitles[matchedPath] || 'Pay & Record System';
 
   return (
     <div className="dashboard-wrapper">

@@ -1,7 +1,7 @@
-const AddEmpStep4 = ({ formData, handleChange, handlePaySubmit }) => (
+const AddEmpStep3 = ({ formData, handleChange, handlePaySubmit }) => (
   <>
     <h3 className="fs-5 text-start fw-semibold mb-3">
-        4. Pay Information
+        3. Pay Information
     </h3>
 
     <form onSubmit={handlePaySubmit}>
@@ -51,4 +51,4 @@ const AddEmpStep4 = ({ formData, handleChange, handlePaySubmit }) => (
   </>
 )
 
-export default AddEmpStep4
+export default AddEmpStep3

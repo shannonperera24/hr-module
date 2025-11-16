@@ -35,7 +35,6 @@ export class EmployeesController {
       limits: { fileSize: 2 * 1024 * 1024 },
     }),
   )
-
   async create(
     @Body(ValidationPipe) createEmployeeDto: CreateEmployeeDto,
     @UploadedFile() file?: Express.Multer.File
@@ -57,12 +56,41 @@ export class EmployeesController {
   }
 
   @Patch(':id')
-  update(@Param('id', ParseIntPipe) id: number, @Body(ValidationPipe) updateEmployeeDto: UpdateEmployeeDto) {
+  @UseInterceptors(
+    FileInterceptor('photo_id', {
+      storage: diskStorage({
+        destination: './uploads/employees',
+        filename: (req, file, cb) => {
+          const timestamp = Date.now();
+          const ext = extname(file.originalname);
+          const baseName = file.originalname
+            .replace(ext, '')
+            .replace(/\s+/g, '_')
+            .toLowerCase();
+          cb(null, `${baseName}_${timestamp}${ext}`);
+        },
+      }),
+      fileFilter: (req, file, cb) => {
+        if (!file.mimetype.match(/\/(jpg|jpeg|png)$/)) {
+          cb(new BadRequestException('Only image files are allowed (jpg, jpeg, png)'), false);
+        } else {
+          cb(null, true);
+        }
+      },
+      limits: { fileSize: 2 * 1024 * 1024 },
+    }),
+  )
+  async update(@Param('id', ParseIntPipe) id: number, @Body(ValidationPipe) updateEmployeeDto: UpdateEmployeeDto,
+    @UploadedFile() file?: Express.Multer.File
+  ) {
+    if (file) {
+      updateEmployeeDto.photo_id = `uploads/employees/${file.filename}`;
+    }
     return this.employeesService.update(id, updateEmployeeDto);
   }
 
   @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.employeesService.remove(id);
+  softDelete(@Param('id', ParseIntPipe) id: number) {
+    return this.employeesService.softDelete(id);
   }
 }

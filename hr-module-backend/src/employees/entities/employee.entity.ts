@@ -69,6 +69,9 @@ export class Employee {
     @Column({ type: 'varchar', length: 255, nullable: true })
     photo_id?: string;
 
+    @Column({ type: 'boolean', default: false })
+    is_deleted: boolean;
+
     @OneToOne(() => User, (user) => user.employee)
     user: User;
 

@@ -1,39 +1,36 @@
-import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
-import Swal from "sweetalert2"
-import { toast } from 'react-toastify'
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 
-const Security = () => {
+const ViewEmpEmpClr = () => {
+  const { emp_no } = useParams();
   const [clearances, setClearances] = useState([]);
   const [securityClearances, setSecurityClearances] = useState([]);
-
-  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const loadData = async () => {
       try {
         const [clrRes, secRes] = await Promise.all([
           axios.get("http://localhost:3000/employee_clearance"),
-          axios.get("http://localhost:3000/security_clearance"),
+          axios.get("http://localhost:3000/security_clearance")
         ]);
-        setClearances(clrRes.data);
+        const filtered = clrRes.data.filter(
+          (c) => c.emp_no === Number(emp_no)
+        );
+        setClearances(filtered);
         setSecurityClearances(secRes.data);
       } catch (err) {
         console.error("Error loading clearance data:", err);
       }
     };
     loadData();
-  }, []);
+  }, [emp_no]);
 
   const getSecurityClearanceName = (id) =>
     securityClearances.find((s) => s.security_clearance_id === id)
     ?.security_clearance_level || "N/A";
-
-  const filteredClearances = clearances.filter((c) =>
-    c.emp_no?.toString().includes(searchTerm) ||
-    c.employee_clearance_id?.toString().includes(searchTerm)
-  );
 
   const handleDelete = async (employee_clearance_id) => {
     const result = await Swal.fire({
@@ -60,36 +57,31 @@ const Security = () => {
   };
 
   return (
-    <div className='employee-page px-5 mt-4'>
+    <div className="table-responsive p-4 mb-4">
+      <h3 className="employee-detail-heading fs-5 text-start fw-semibold mb-3">
+        Employee Clearance Information
+      </h3>
+
       <div className='add-button mb-3'>
-        <Link to="/dashboard/add_emp_clearance" className="btn btn-success">
-          <i className='bi bi-person-plus me-2'></i>Add Employee Clearance
+        <Link to="/dashboard/add_emp_clearance" className="btn btn-success"
+          state={{ emp_no: Number(emp_no) }}>
+          <i className='bi bi-person-plus me-2'></i>Add Clearance
         </Link>
       </div>
-
-      <div className='search-bar mb-3'>
-        <i className='bi bi-search'></i>
-        <input type='text' className='form-control' placeholder='Search...'
-        value={searchTerm} 
-        onChange={(e) => setSearchTerm(e.target.value)}/>
-      </div>
-      
       <div className='table-responsive'>
         <table className='details-table table table-hover align-middle'>
           <thead>
             <tr>
-              <th scope='col'>Emp No</th>
-              <th>Security Level</th>
-              <th>Expiry</th>
-              <th>Status</th>
+              <th scope='col'>Security Clearance</th>
+              <th scope='col'>Expiry</th>
+              <th scope='col'>Status</th>
               <th scope='col'>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {filteredClearances.length > 0 ? (
-              filteredClearances.map((c) => (
+            {clearances.length > 0 ? (
+              clearances.map((c) => (
                 <tr key={c.employee_clearance_id}>
-                  <td>{c.emp_no}</td>
                   <td>{getSecurityClearanceName(c.security_clearance_id)}</td>
                   <td>{c.clearance_expiry ? new Date(c.clearance_expiry)
                     .toLocaleDateString() : "N/A"}</td>
@@ -108,7 +100,7 @@ const Security = () => {
               ))
             ) : (
               <tr>
-                <td colSpan='5' className='text-center text-muted'>
+                <td colSpan='9' className='text-center text-muted'>
                   No clearances found
                 </td>
               </tr>
@@ -120,4 +112,4 @@ const Security = () => {
   )
 }
 
-export default Security
+export default ViewEmpEmpClr

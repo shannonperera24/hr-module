@@ -241,33 +241,33 @@ html, body {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }
 
-.employee-table thead {
+.details-table thead {
   background: rgba(40, 167, 69, 0.3); 
   color: #dff2e1;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.employee-table thead th {
+.details-table thead th {
   font-weight: 600;
   letter-spacing: 0.4px;
 }
 
-.employee-table .btn {
+.details-table .btn {
   border-radius: 8px;
   font-weight: 500;
 }
 
-.employee-table th,
-.employee-table td {
+.details-table th,
+.details-table td {
   padding: 1rem 1.2rem;
   vertical-align: middle;
 }
 
-.employee-table th:last-child {
+.details-table th:last-child {
   text-align: left;
 }
 
-.employee-table td:last-child {
+.details-table td:last-child {
   white-space: nowrap;
   text-align: right;
   width: 1%;
@@ -309,7 +309,51 @@ html, body {
   color: #ccc;
 }
 
+.swal-title {
+  font-size: 1.2rem !important;
+  color: #000000 !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.3px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.swal2-actions {
+  gap: 1rem !important; 
+}
+
+.confirm-btn {
+  background: #d33 !important;
+  color: #fff !important;
+  border: none !important;
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.confirm-btn:hover {
+  background: #b02a2a !important;
+}
+
+.cancel-btn {
+  background: #3085d6 !important; 
+  color: #fff !important;
+  border: none !important;
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.cancel-btn:hover {
+  background: #2671b6 !important;
+}
+
 /* ADD EMPLOYEE */
+
 .add-employee-page {
   color: #fff;
   overflow-y: auto;
@@ -327,4 +371,30 @@ html, body {
   padding-bottom: 0.375rem;
   line-height: 1.5;
   border-radius: 10px !important;
+}
+
+/* VIEW EMPLOYEE */
+
+.employee-detail-heading {
+  background: linear-gradient(135deg, #e8f5e9, #d4edda); /* soft, elegant gradient */
+  color: #1e5631;                                       /* deep but warm green */
+  padding: 0.7rem 1.2rem;
+  border-radius: 12px;
+  border-left: 4px solid #28a745;                       /* subtle green accent */
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);           /* softer shadow */
+  backdrop-filter: blur(8px);
+}
+
+.edit-btn {
+  background-color: var(--bs-warning) !important;
+  color: #fff !important;
+  border: 1px solid var(--bs-warning) !important;
+}
+
+.edit-btn:hover {
+  background-color: transparent !important;
+  color: var(--bs-warning) !important;
+  border: 1px solid var(--bs-warning) !important;
 }

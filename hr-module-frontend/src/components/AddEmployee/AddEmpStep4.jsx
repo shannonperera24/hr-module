@@ -1,7 +1,7 @@
-const AddEmpStep5 = ({ formData, handleChange, handleInstructorSubmit }) => (
+const AddEmpStep4 = ({ formData, handleChange, handleInstructorSubmit }) => (
   <>
     <h3 className="fs-5 text-start fw-semibold mb-3">
-        5. Instructor Experience Information
+        4. Instructor Experience Information
     </h3>
 
     <form onSubmit={handleInstructorSubmit}>
@@ -27,4 +27,4 @@ const AddEmpStep5 = ({ formData, handleChange, handleInstructorSubmit }) => (
   </>
 )
 
-export default AddEmpStep5
+export default AddEmpStep4

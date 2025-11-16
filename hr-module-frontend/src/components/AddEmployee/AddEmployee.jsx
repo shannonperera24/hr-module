@@ -7,8 +7,6 @@ import AddEmpStep2 from './AddEmpStep2'
 import AddEmpStep3 from './AddEmpStep3'
 import AddEmpStep4 from './AddEmpStep4'
 import AddEmpStep5 from './AddEmpStep5'
-import AddEmpStep6 from './AddEmpStep6'
-import AddEmpStep7 from './AddEmpStep7'
 
 const AddEmployee = () => {
   const [step, setStep] = useState(1);
@@ -24,21 +22,15 @@ const AddEmployee = () => {
     //Step 2 - Service history table
     category: "", type_of_service: "", enlistment_date: "", 
     current_status: "", retirement_date: "", service_number_stamp: "",
-    //Step 3 - Posting table
-    from_date: "", to_date: "", rank_id: "", corp_and_regiment_id: "",
-    unit_id: "", appointment_id: "", special_duty_id: "",
-    overseas_posting_id: "",
-    //Step 4 - Pay and benefits table
+    //Step 3 - Pay and benefits table
     pay_code: "", basic_pay: "", bank_account_no: "", bank_name: "",
     epf_no: "", insurance_no: "",
-    //Step 5 - Qualification record table
+    //Step 4 - Qualification record table
     has_instructor_experience: "",
-    //Step 6 - Medical and health record table
+    //Step 5 - Medical and health record table
     blood_group: "", height_cm: "", weight_kg: "", bmi: "", 
     medical_check_date: "", disability: "", 
     medical_fitness_category_id: "",
-    //Step 7 - Employee clearance table
-    security_clearance_id: "", clearance_expiry: "", clearance_status: "",
   });
 
   const handleChange = (e) => {
@@ -114,45 +106,7 @@ const AddEmployee = () => {
     }
   };
 
-  // Step 3 - Posting submit
-  const handlePostingSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!employeeId) {
-      toast.warn("Employee ID missing. Please complete Step 1 first.");
-      return;
-    }
-
-    try {
-      const payload = {
-        emp_no: employeeId,
-        from_date: formData.from_date,
-        to_date: formData.to_date,
-        rank_id: formData.rank_id ? Number(formData.rank_id) : undefined,
-        corp_and_regiment_id: formData.corp_and_regiment_id ? Number(formData.corp_and_regiment_id) : undefined,
-        unit_id: formData.unit_id ? Number(formData.unit_id) : undefined,
-        appointment_id: formData.appointment_id ? Number(formData.appointment_id) : undefined,
-        special_duty_id: formData.special_duty_id ? Number(formData.special_duty_id) : undefined,
-        overseas_posting_id: formData.overseas_posting_id ? Number(formData.overseas_posting_id) : undefined,
-      };
-
-      Object.keys(payload).forEach(
-        (key) => payload[key] === undefined && delete payload[key]
-      );
-
-      const res = await axios.post("http://localhost:3000/posting", payload);
-
-      if (res.status === 201 || res.status === 200) {
-        toast.success("Posting information saved successfully!");
-        setStep(4); 
-      }
-    } catch (err) {
-      console.error("Error adding posting information: ", err);
-      toast.error("Failed to save posting information");
-    }
-  };
-
-  //Step 4 - Pay and benefits submit
+  //Step 3 - Pay and benefits submit
   const handlePaySubmit = async (e) => {
     e.preventDefault();
 
@@ -180,7 +134,7 @@ const AddEmployee = () => {
 
       if (res.status === 201 || res.status === 200) {
         toast.success("Pay information saved successfully!");
-        setStep(5);
+        setStep(4);
       }
     } catch (err) {
       console.error("Error adding pay information: ", err);
@@ -188,7 +142,7 @@ const AddEmployee = () => {
     }
   };
 
-  // Step 5 - Qualification record submit
+  // Step 4 - Qualification record submit
   const handleInstructorSubmit = async (e) => {
     e.preventDefault();
 
@@ -207,7 +161,7 @@ const AddEmployee = () => {
 
       if (res.status === 201 || res.status === 200) {
         toast.success("Instructor experience information saved successfully!");
-        setStep(6);
+        setStep(5);
       }
     } catch (err) {
       console.error("Error adding instructor experience information: ", err);
@@ -215,7 +169,7 @@ const AddEmployee = () => {
     }
   };
 
-  // Step 6 - Medical and health record submit
+  // Step 5 - Medical and health record submit
   const handleMedRecSubmit = async (e) => {
     e.preventDefault();
 
@@ -244,44 +198,11 @@ const AddEmployee = () => {
 
       if (res.status === 201 || res.status === 200) {
         toast.success("Medical & health information saved successfully!");
-        setStep(7);
+        navigate('/dashboard/employee');
       }
     } catch (err) {
       console.error("Error adding medical & health information: ", err);
       toast.error("Failed to save medical & health information");
-    }
-  };
-
-  // Step 7 - Employee clearance submit
-  const handleEmpSecSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!employeeId) {
-      toast.warn("Employee ID missing. Please complete Step 1 first.");
-      return;
-    }
-
-    try {
-      const payload = {
-        emp_no: employeeId,
-        security_clearance_id: formData.security_clearance_id ? Number(formData.security_clearance_id) : undefined, 
-        clearance_expiry: formData.clearance_expiry, 
-        clearance_status: formData.clearance_status,
-      };
-
-      Object.keys(payload).forEach(
-        (key) => payload[key] === undefined && delete payload[key]
-      );
-
-      const res = await axios.post("http://localhost:3000/employee_clearance", payload);
-
-      if (res.status === 201 || res.status === 200) {
-        toast.success("Security clearance information saved successfully!");
-        navigate('/dashboard/employee');
-      }
-    } catch (err) {
-      console.error("Error adding security clearance information: ", err);
-      toast.error("Failed to save security clearance information");
     }
   };
 
@@ -298,23 +219,15 @@ const AddEmployee = () => {
         )}
         {step === 3 && (
           <AddEmpStep3 formData={formData} handleChange={handleChange}
-          handlePostingSubmit={handlePostingSubmit}/>
+          handlePaySubmit={handlePaySubmit}/>
         )}
         {step === 4 && (
           <AddEmpStep4 formData={formData} handleChange={handleChange}
-          handlePaySubmit={handlePaySubmit}/>
+          handleInstructorSubmit={handleInstructorSubmit}/>
         )}
         {step === 5 && (
           <AddEmpStep5 formData={formData} handleChange={handleChange}
-          handleInstructorSubmit={handleInstructorSubmit}/>
-        )}
-        {step === 6 && (
-          <AddEmpStep6 formData={formData} handleChange={handleChange}
           handleMedRecSubmit={handleMedRecSubmit}/>
-        )}
-        {step === 7 && (
-          <AddEmpStep7 formData={formData} handleChange={handleChange}
-          handleEmpSecSubmit={handleEmpSecSubmit}/>
         )}
       </div>
     </div>

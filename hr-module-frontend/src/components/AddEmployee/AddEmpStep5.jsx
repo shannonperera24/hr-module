@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const AddEmpStep6 = ({ formData, handleChange, handleMedRecSubmit }) => {
+const AddEmpStep5 = ({ formData, handleChange, handleMedRecSubmit }) => {
     const [fitCategories, setFitCategories] = useState([]);
     
     useEffect(() => {
@@ -86,7 +86,7 @@ const AddEmpStep6 = ({ formData, handleChange, handleMedRecSubmit }) => {
                 
                 <div className="d-flex justify-content-end mt-4">
                     <button type="submit" className="btn btn-success px-4">
-                        Next
+                        Finish
                     </button>
                 </div>
             </form>
@@ -94,4 +94,4 @@ const AddEmpStep6 = ({ formData, handleChange, handleMedRecSubmit }) => {
     )
 }
 
-export default AddEmpStep6
+export default AddEmpStep5
