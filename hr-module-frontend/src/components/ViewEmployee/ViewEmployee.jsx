@@ -9,6 +9,7 @@ import ViewEmpEmpCom from './ViewEmpEmpCom'
 import ViewEmpEmpFM from './ViewEmpEmpFM'
 import ViewEmpEmpSA from './ViewEmpEmpSA'
 import ViewEmpPos from './ViewEmpPos'
+import ViewEmpPromo from "./ViewEmpPromo";
 
 const ViewEmployee = () => {
   const { emp_no } = useParams();
@@ -244,6 +245,7 @@ const ViewEmployee = () => {
       <ViewEmpEmpFM missions={employee_foreign_missions} />
       <ViewEmpEmpCom commendations={employee_commendations} />
       <ViewEmpEmpSA sports={employee_sporting_achievements} />
+      <ViewEmpPromo emp_no={emp_no} />
     </div>
   )
 }

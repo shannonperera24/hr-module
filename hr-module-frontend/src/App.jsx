@@ -15,6 +15,12 @@ import EditEmpStep2 from './components/EditEmployee/EditEmpStep2'
 import EditEmpStep3 from './components/EditEmployee/EditEmpStep3'
 import EditEmpStep4 from './components/EditEmployee/EditEmpStep4'
 import EditEmpStep5 from './components/EditEmployee/EditEmpStep5'
+import AddEmpCoMar from './components/AddEmpCoMar'
+import EditEmpCoMar from './components/EditEmpCoMar'
+import AddEmpDisAct from './components/AddEmpDisAct'
+import EditEmpDisAct from './components/EditEmpDisAct'
+import AddEmpPromo from './components/AddEmpPromo'
+import EditEmpPromo from './components/EditEmpPromo'
 
 import Posting from './components/Posting'
 import AddPosting from './components/AddPosting'
@@ -30,6 +36,7 @@ import EditEmpClr from './components/EditEmpClr'
 
 import Awards from './components/Awards'
 import Profile from './components/Profile'
+
 
 function TitleHandler() {
   const location = useLocation();
@@ -69,6 +76,12 @@ function App() {
           <Route path='employee/edit-pay/:emp_no' element={<EditEmpStep3 />} />
           <Route path='employee/edit-instructor/:emp_no' element={<EditEmpStep4 />} /> 
           <Route path='employee/edit-medrec/:emp_no' element={<EditEmpStep5 />} />
+          <Route path='add_court_martial' element={<AddEmpCoMar />} />
+          <Route path='edit_court_martial/:court_martial_record_id' element={<EditEmpCoMar />} />
+          <Route path='add_disciplinary_action' element={<AddEmpDisAct />} />
+          <Route path='edit_disciplinary_action/:action_id' element={<EditEmpDisAct />} />
+          <Route path='add_promotion' element={<AddEmpPromo />} />
+          <Route path='edit_promotion/:promotion_id' element={<EditEmpPromo />} />
           <Route path='posting' element={<Posting />} />
           <Route path='pay' element={<Pay />} />
           <Route path='qualification' element={<Qualification />} />
