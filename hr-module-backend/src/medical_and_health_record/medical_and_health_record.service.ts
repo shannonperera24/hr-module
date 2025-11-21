@@ -43,4 +43,19 @@ export class MedicalAndHealthRecordService {
       throw new NotFoundException(`Medical and health record with ID ${medical_and_health_record_id} not found`);
     }
   }
+
+  //dashboard
+  async getFitnessCategoryStats() {
+    const categories = await this.medAndHealthRecRepository
+      .createQueryBuilder('record')
+      .leftJoin('record.medical_fitness_category', 'cat')
+      .select('cat.fitness_category_name', 'fitness_category_name')
+      .addSelect('COUNT(*)', 'count')
+      .groupBy('cat.fitness_category_name')
+      .getRawMany();
+    return categories.map(row => ({
+      fitness_category_name: row.fitness_category_name,
+      count: Number(row.count)
+    }));
+  }
 }

@@ -93,4 +93,11 @@ export class EmployeesController {
   softDelete(@Param('id', ParseIntPipe) id: number) {
     return this.employeesService.softDelete(id);
   }
+
+  //dashboard
+  @Get('stats/total-personnel')
+  async getTotalPersonnel() {
+    const total = await this.employeesService.getTotalPersonnel();
+    return { total };
+  }
 }

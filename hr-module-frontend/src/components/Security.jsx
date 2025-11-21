@@ -61,6 +61,17 @@ const Security = () => {
 
   return (
     <div className='employee-page px-5 mt-4'>
+
+      <div className="table-responsive p-4 mb-4">
+        <div className="row g-2">
+          <div className="col-md-4 col-lg-3">
+            <Link to="/dashboard/security_clearance" className="master-btn btn btn-outline-secondary w-100">
+              Security Clearances Master
+            </Link>
+          </div>
+        </div>
+      </div>
+
       <div className='add-button mb-3'>
         <Link to="/dashboard/add_emp_clearance" className="btn btn-success">
           <i className='bi bi-person-plus me-2'></i>Add Employee Clearance

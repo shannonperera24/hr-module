@@ -58,4 +58,11 @@ export class EmployeesService {
       throw new NotFoundException(`Employee with ID ${emp_no} not found`);
     }
   }
+
+  //dashboard
+  async getTotalPersonnel(): Promise<number> {
+    return await this.employeeRepository.count({
+      where: { is_deleted: false }
+    });
+  }
 }

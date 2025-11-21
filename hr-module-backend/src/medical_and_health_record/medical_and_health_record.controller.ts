@@ -17,6 +17,12 @@ export class MedicalAndHealthRecordController {
     return this.medicalAndHealthRecordService.findAll();
   }
 
+  //dashboard
+  @Get('stats/fitness-pie')
+  getFitnessPie() {
+    return this.medicalAndHealthRecordService.getFitnessCategoryStats();
+  }
+
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.medicalAndHealthRecordService.findOne(id);

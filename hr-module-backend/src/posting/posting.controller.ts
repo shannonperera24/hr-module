@@ -17,6 +17,12 @@ export class PostingController {
     return this.postingService.findAll();
   }
 
+  //dashboard
+  @Get('stats/current-by-rank')
+  getCurrentByRank() {
+    return this.postingService.getCurrentPersonnelByRank();
+  }
+  
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.postingService.findOne(id);

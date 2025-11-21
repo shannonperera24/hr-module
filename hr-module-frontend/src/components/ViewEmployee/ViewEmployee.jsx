@@ -10,6 +10,13 @@ import ViewEmpEmpFM from './ViewEmpEmpFM'
 import ViewEmpEmpSA from './ViewEmpEmpSA'
 import ViewEmpPos from './ViewEmpPos'
 import ViewEmpPromo from "./ViewEmpPromo";
+import ViewEmpAllo from "./ViewEmpAllo";
+import ViewEmpLoan from "./ViewEmpLoan";
+import ViewEmpEmpCivil from "./ViewEmpEmpCivil";
+import ViewEmpEmpATC from "./ViewEmpEmpATC";
+import ViewEmpEmpLang from "./ViewEmpEmpLang";
+import ViewEmpEmpCoSk from "./ViewEmpEmpCoSk";
+import ViewEmpMedHis from "./ViewEmpMedHis";
 
 const ViewEmployee = () => {
   const { emp_no } = useParams();
@@ -86,7 +93,6 @@ const ViewEmployee = () => {
   return (
     <div className="add-employee-page px-5 mt-4">
 
-      {/* one to one information */}
       <div className="table-responsive p-4 mb-4">
         <h3 className="employee-detail-heading fs-5 text-start fw-semibold mb-3">
           Personal Identification & Bio Data
@@ -164,6 +170,24 @@ const ViewEmployee = () => {
         </div>
       </div>
 
+      <ViewEmpEmpClr clearances={employee_clearances} />
+      
+      <ViewEmpPos postings={postings} />
+
+      <ViewEmpPromo emp_no={emp_no} />
+
+      <ViewEmpEmpAw awards={employee_awards} />
+      
+      <ViewEmpEmpFM missions={employee_foreign_missions} />
+      
+      <ViewEmpEmpCom commendations={employee_commendations} />
+      
+      <ViewEmpEmpSA sports={employee_sporting_achievements} />
+      
+      <ViewEmpDisAct disciplinaryActions={disciplinary_actions} />
+      
+      <ViewEmpCoMar courtMartialRecords={court_martial_records} />
+
       <div className="table-responsive p-4 mb-4">
         <h3 className="employee-detail-heading fs-5 text-start fw-semibold mb-3">
           Pay Information
@@ -190,6 +214,10 @@ const ViewEmployee = () => {
         </div>
       </div>
 
+      <ViewEmpAllo emp_no={emp_no} />
+      
+      <ViewEmpLoan emp_no={emp_no} />
+
       <div className="table-responsive p-4 mb-4">
         <h3 className="employee-detail-heading fs-5 text-start fw-semibold mb-3">
           Instructor Experience Information
@@ -208,6 +236,14 @@ const ViewEmployee = () => {
           </button>
         </div>
       </div>
+
+      <ViewEmpEmpCivil emp_no={emp_no} />
+      
+      <ViewEmpEmpATC emp_no={emp_no} />
+      
+      <ViewEmpEmpLang emp_no={emp_no} />
+      
+      <ViewEmpEmpCoSk emp_no={emp_no} />
 
       <div className="table-responsive p-4 mb-4">
         <h3 className="employee-detail-heading fs-5 text-start fw-semibold mb-3">
@@ -236,16 +272,7 @@ const ViewEmployee = () => {
         </div>
       </div>
 
-      {/* one to many information */}
-      <ViewEmpPos postings={postings} />
-      <ViewEmpEmpClr clearances={employee_clearances} />
-      <ViewEmpCoMar courtMartialRecords={court_martial_records} />
-      <ViewEmpDisAct disciplinaryActions={disciplinary_actions} />
-      <ViewEmpEmpAw awards={employee_awards} />
-      <ViewEmpEmpFM missions={employee_foreign_missions} />
-      <ViewEmpEmpCom commendations={employee_commendations} />
-      <ViewEmpEmpSA sports={employee_sporting_achievements} />
-      <ViewEmpPromo emp_no={emp_no} />
+      <ViewEmpMedHis emp_no={emp_no} />
     </div>
   )
 }

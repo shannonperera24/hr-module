@@ -95,6 +95,42 @@ const Posting = () => {
 
   return (
     <div className='employee-page px-5 mt-4'>
+
+      <div className="table-responsive p-4 mb-4">
+        <div className="row g-2">
+          <div className="col-md-4 col-lg-3">
+            <Link to="/dashboard/army_rank" className="master-btn btn btn-outline-secondary w-100">
+              Ranks Master
+            </Link>
+          </div>
+          <div className="col-md-4 col-lg-3">
+            <Link to="/dashboard/corp_and_regiment" className="master-btn btn btn-outline-secondary w-100">
+              Corps & Regiments Master
+            </Link>
+          </div>
+          <div className="col-md-4 col-lg-3">
+            <Link to="/dashboard/unit" className="master-btn btn btn-outline-secondary w-100">
+              Units Master
+            </Link>
+          </div>
+          <div className="col-md-4 col-lg-3">
+            <Link to="/dashboard/appointment" className="master-btn btn btn-outline-secondary w-100">
+              Appointments Master
+            </Link>
+          </div>
+          <div className="col-md-4 col-lg-3">
+            <Link to="/dashboard/special_duty" className="master-btn btn btn-outline-secondary w-100">
+              Special Duties Master
+            </Link>
+          </div>
+          <div className="col-md-4 col-lg-3">
+            <Link to="/dashboard/overseas_posting" className="master-btn btn btn-outline-secondary w-100">
+              Overseas Postings Master
+            </Link>
+          </div>
+        </div>
+      </div>
+
       <div className='add-button mb-3'>
         <Link to="/dashboard/add_posting" className="btn btn-success">
           <i className='bi bi-person-plus me-2'></i>Add Posting

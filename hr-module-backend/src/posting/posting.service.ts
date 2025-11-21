@@ -43,4 +43,21 @@ export class PostingService {
       throw new NotFoundException(`Posting with ID ${posting_id} not found`);
     }
   }
+
+  //dashboard
+  async getCurrentPersonnelByRank(): Promise<{ rank_name: string; count: number }[]> {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const rows = await this.postingRepository
+      .createQueryBuilder('p')
+      .leftJoin('p.army_rank', 'r')
+      .select('r.rank_name', 'rank_name')
+      .addSelect('COUNT(DISTINCT p.emp_no)', 'count') 
+      .where('p.from_date <= :today', { today })
+      .andWhere('p.to_date >= :today', { today })
+      .groupBy('r.rank_name')
+      .orderBy('r.rank_name')
+      .getRawMany();
+    return rows.map(r => ({ rank_name: r.rank_name, count: Number(r.count) }));
+  }
 }

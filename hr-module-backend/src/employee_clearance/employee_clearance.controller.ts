@@ -17,6 +17,12 @@ export class EmployeeClearanceController {
     return this.employeeClearanceService.findAll();
   }
 
+  //dashboard
+  @Get('stats/expiring')
+  async getExpiringSoon() {
+    return this.employeeClearanceService.getExpiringSoon();
+  }
+  
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.employeeClearanceService.findOne(id);
