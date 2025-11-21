@@ -4,39 +4,47 @@ import axios from "axios";
 import { toast } from 'react-toastify'
 
 const EditEmpStep3 = () => {
-    const { emp_no } = useParams();
+    const { emp_no, pay_and_benefits_id } = useParams();
+    const isStandalone = !!pay_and_benefits_id;
     const navigate = useNavigate();
     const [formData, setFormData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
 
     useEffect(() => {
-        axios
-        .get(`http://localhost:3000/employee/${emp_no}`)
-        .then((res) => {
-            const data = res.data;
-            if (!data.pay_and_benefits) {
-                console.warn("No pay information found for employee");
+        const loadData = async () => {
+            try {
+                let res;
+                if (isStandalone) {
+                    res = await axios.get(`http://localhost:3000/pay_and_benefits/${pay_and_benefits_id}`);
+                    setFormData(res.data);
+                } else {
+                    res = await axios.get(`http://localhost:3000/employee/${emp_no}`);
+                    const p = res.data.pay_and_benefits;
+                    if (!p) {
+                        console.warn("No pay information found for employee");
+                        setLoading(false);
+                        return;
+                    }
+                    setFormData({
+                        pay_and_benefits_id: p.pay_and_benefits_id,
+                        pay_code: p.pay_code || "",
+                        basic_pay: p.basic_pay || "",
+                        bank_account_no: p.bank_account_no || "",
+                        bank_name: p.bank_name || "",
+                        epf_no: p.epf_no || "",
+                        insurance_no: p.insurance_no || "",
+                    });
+                }
+            } catch(err) {
+                console.error("Error loading pay info:", err);
+                toast.error("Failed to load pay info");
+            } finally {
                 setLoading(false);
-                return;
             }
-            const p = data.pay_and_benefits;
-            setFormData({
-                pay_and_benefits_id: p.pay_and_benefits_id,
-                pay_code: p.pay_code || "",
-                basic_pay: p.basic_pay || "",
-                bank_account_no: p.bank_account_no || "",
-                bank_name: p.bank_name || "",
-                epf_no: p.epf_no || "",
-                insurance_no: p.insurance_no || "",
-            });
-            setLoading(false);
-        })
-        .catch((err) => {
-            console.error("Error fetching employee:", err);
-            setLoading(false);
-        });
-    }, [emp_no]);
+        };
+        loadData();
+    }, [emp_no, pay_and_benefits_id, isStandalone]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -62,7 +70,11 @@ const EditEmpStep3 = () => {
             payload
             )
             toast.success("Pay information updated successfully!");
-            navigate(`/dashboard/view_employee/${emp_no}`);
+            if (isStandalone) {
+                navigate("/dashboard/pay");
+            } else {
+                navigate(`/dashboard/view_employee/${emp_no}`);
+            }
         } catch (err) {
             console.error("Failed to update:", err);
             toast.error("Failed to update pay information!");

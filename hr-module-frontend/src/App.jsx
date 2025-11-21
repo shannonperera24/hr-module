@@ -69,15 +69,50 @@ import AddOverseasPosting from './components/Masters/AddOverseasPosting'
 import EditOverseasPosting from './components/Masters/EditOverseasPosting'
 
 import Pay from './components/Pay'
-import Qualification from './components/Qualification'
-import Medical from './components/Medical'
-import Security from './components/Security'
-import Awards from './components/Awards'
-import Profile from './components/Profile'
+import Allowance from './components/Masters/Allowance'
+import AddAllowance from './components/Masters/AddAllowance'
+import EditAllowance from './components/Masters/EditAllowance'
 
+import Qualification from './components/Qualification'
+import CivilQualification from './components/Masters/CivilQualification'
+import AddCivilQual from './components/Masters/AddCivilQual'
+import EditCivilQual from './components/Masters/EditCivilQual'
+import ArmyTrainingCourse from './components/Masters/ArmyTrainingCourse'
+import AddATC from './components/Masters/AddATC'
+import EditATC from './components/Masters/EditATC'
+import LanguageProficiency from './components/Masters/LanguageProficiency'
+import AddLanguage from './components/Masters/AddLanguage'
+import EditLanguage from './components/Masters/EditLanguage'
+import ComputerSkill from './components/Masters/ComputerSkill'
+import AddCompSkill from './components/Masters/AddCompSkill'
+import EditCompSkill from './components/Masters/EditCompSkill'
+
+import Medical from './components/Medical'
+import MedFitCategory from './components/Masters/MedFitCategory'
+import AddMedFitCategory from './components/Masters/AddMedFitCategory'
+import EditMedFitCategory from './components/Masters/EditMedFitCategory'
+
+import Awards from './components/Awards'
+import AwardsMaster from './components/Masters/AwardsMaster'
+import AddAward from './components/Masters/AddAward'
+import EditAward from './components/Masters/EditAward'
+import ForeignMission from './components/Masters/ForeignMission'
+import AddForeignMission from './components/Masters/AddForeignMission'
+import EditForeignMission from './components/Masters/EditForeignMission'
+import Commendation from './components/Masters/Commendation'
+import AddCommendation from './components/Masters/AddCommendation'
+import EditCommendation from './components/Masters/EditCommendation'
+
+import Security from './components/Security'
 import SecurityClearance from './components/Masters/SecurityClearance'
 import AddSecurityClearance from './components/Masters/AddSecurityClearance'
 import EditSecurityClearance from './components/Masters/EditSecurityClearance'
+
+import Profile from './components/Profile'
+import SportingAchievement from './components/Masters/SportingAchievement'
+import AddSportAch from './components/Masters/AddSportAch'
+import EditSportAch from './components/Masters/EditSportAch'
+
 
 function TitleHandler() {
   const location = useLocation();
@@ -169,13 +204,45 @@ function App() {
           <Route path='add_overseas_posting' element={<AddOverseasPosting />} />
           <Route path='edit_overseas_posting/:overseas_posting_id' element={<EditOverseasPosting />} />
           <Route path='pay' element={<Pay />} />
+          <Route path='allowance' element={<Allowance />} />
+          <Route path='add_allowance' element={<AddAllowance />} />
+          <Route path='edit_allowance/:allowance_id' element={<EditAllowance />} />
+          <Route path='edit_pay/:pay_and_benefits_id' element={<EditEmpStep3 />} />
           <Route path='qualification' element={<Qualification />} />
+          <Route path='civil_qualification' element={<CivilQualification />} />
+          <Route path='add_civil_qual' element={<AddCivilQual />} />
+          <Route path='edit_civil_qual/:civil_qualification_id' element={<EditCivilQual />} />
+          <Route path='army_training_course' element={<ArmyTrainingCourse />} />
+          <Route path='add_course' element={<AddATC />} />
+          <Route path='edit_course/:course_id' element={<EditATC />} />
+          <Route path='language_proficiency' element={<LanguageProficiency />} />
+          <Route path='add_language' element={<AddLanguage />} />
+          <Route path='edit_language/:language_id' element={<EditLanguage />} />
+          <Route path='computer_skill' element={<ComputerSkill />} />
+          <Route path='add_computer_skill' element={<AddCompSkill />} />
+          <Route path='edit_computer_skill/:computer_skill_id' element={<EditCompSkill />} />          
           <Route path='medical' element={<Medical />} />
+          <Route path='edit_medical/:medical_and_health_record_id' element={<EditEmpStep5 />} />
+          <Route path='medical_fitness_category' element={<MedFitCategory />} />
+          <Route path='add_med_fit_category' element={<AddMedFitCategory />} />
+          <Route path='edit_med_fit_category/:medical_fitness_category_id' element={<EditMedFitCategory />} />
           <Route path='security' element={<Security />} />
           <Route path='security_clearance' element={<SecurityClearance />} />
           <Route path='add_security_clearance' element={<AddSecurityClearance />} />
           <Route path='edit_security_clearance/:security_clearance_id' element={<EditSecurityClearance />} />
           <Route path='awards' element={<Awards />} />
+          <Route path='award_master' element={<AwardsMaster />} />
+          <Route path='add_award' element={<AddAward />} />
+          <Route path='edit_award/:award_id' element={<EditAward />} />
+          <Route path='foreign_mission' element={<ForeignMission />} />
+          <Route path='add_foreign_mission' element={<AddForeignMission />} />
+          <Route path='edit_foreign_mission/:foreign_mission_id' element={<EditForeignMission />} />
+          <Route path='commendation' element={<Commendation />} />
+          <Route path='add_commendation' element={<AddCommendation />} />
+          <Route path='edit_commendation/:commendation_id' element={<EditCommendation />} />
+          <Route path='sporting_achievement' element={<SportingAchievement />} />
+          <Route path='add_sporting_achievement' element={<AddSportAch />} />
+          <Route path='edit_sporting_achievement/:sporting_achievement_id' element={<EditSportAch />} />
           <Route path='profile' element={<Profile />} />
         </Route>
       </Routes>

@@ -4,7 +4,8 @@ import axios from "axios";
 import { toast } from 'react-toastify'
 
 const EditEmpStep5 = () => {
-  const { emp_no } = useParams();
+  const { emp_no, medical_and_health_record_id } = useParams();
+  const isStandalone = !!medical_and_health_record_id;
   const navigate = useNavigate();
   const [formData, setFormData] = useState(null);
   const [fitCategories, setFitCategories] = useState([]);
@@ -14,36 +15,43 @@ const EditEmpStep5 = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [empRes, fitRes] = await Promise.all([
-          axios.get(`http://localhost:3000/employee/${emp_no}`),
-          axios.get("http://localhost:3000/medical_fitness_category")
-        ]);
+        const fitRes = await axios.get("http://localhost:3000/medical_fitness_category");
         setFitCategories(fitRes.data);
-        const data = empRes.data;
-        if (!data.medical_and_health_record) {
-            console.warn("No medical information found for employee");
-            setLoading(false);
-            return;
+        let m;
+        if (isStandalone) {
+          const res = await axios.get(
+            `http://localhost:3000/medical_and_health_record/${medical_and_health_record_id}`
+          );
+          m = res.data;
+        } else {
+          const empRes = await axios.get(`http://localhost:3000/employee/${emp_no}`);
+          m = empRes.data.medical_and_health_record;
         }
-        const m = data.medical_and_health_record;
+        if (!m) {
+          console.warn("No medical record found");
+          setLoading(false);
+          return;
+        }
         setFormData({
-            medical_and_health_record_id: m.medical_and_health_record_id,
-            blood_group: m.blood_group || "",
-            height_cm: m.height_cm || "",
-            weight_kg: m.weight_kg || "",
-            bmi: m.bmi || "",
-            medical_check_date: m.medical_check_date?.split("T")[0] || "",
-            disability: m.disability || "",
-            medical_fitness_category_id: m.medical_fitness_category_id || "",
+          medical_and_health_record_id: m.medical_and_health_record_id,
+          blood_group: m.blood_group || "",
+          height_cm: m.height_cm || "",
+          weight_kg: m.weight_kg || "",
+          bmi: m.bmi || "",
+          medical_check_date: m.medical_check_date?.split("T")[0] || "",
+          disability: m.disability || "",
+          medical_fitness_category_id: m.medical_fitness_category_id || "",
         });
         setLoading(false);
-      } catch(err) {
-          console.error("Error fetching employee:", err);
-          setLoading(false);
+      } catch (err) {
+        console.error("Error loading data:", err);
+        toast.error("Failed to load medical information");
+        setLoading(false);
       }
     };
+
     fetchData();
-  }, [emp_no]);
+  }, [emp_no, medical_and_health_record_id, isStandalone]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -70,7 +78,11 @@ const EditEmpStep5 = () => {
         payload
         )
         toast.success("Medical information updated successfully!");
-        navigate(`/dashboard/view_employee/${emp_no}`);
+        if (isStandalone) {
+          navigate("/dashboard/medical");
+        } else {
+          navigate(`/dashboard/view_employee/${emp_no}`);
+        }
     } catch (err) {
         console.error("Failed to update:", err);
         toast.error("Failed to update medical information!");
