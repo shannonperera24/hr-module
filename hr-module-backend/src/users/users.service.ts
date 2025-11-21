@@ -36,11 +36,17 @@ export class UsersService {
   }
 
   async update(user_id: number, updateUserDto: UpdateUserDto): Promise<User> {
-    const result = await this.usersRepository.update(user_id, updateUserDto);
-    if (result.affected === 0) {
+    const user = await this.usersRepository.findOneBy({ user_id });
+    if (!user) {
       throw new NotFoundException(`User with ID ${user_id} not found`);
     }
-    return this.findOne(user_id);
+    if (updateUserDto.password_hash) {
+      const saltRounds = 10;
+      updateUserDto.password_hash = await bcrypt.hash(updateUserDto.password_hash, saltRounds);
+    }
+    Object.assign(user, updateUserDto);
+    await this.usersRepository.save(user);
+    return user;
   }
 
   async remove(user_id: number): Promise<void> {

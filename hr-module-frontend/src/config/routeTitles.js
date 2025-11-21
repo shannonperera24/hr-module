@@ -95,6 +95,7 @@ const routeTitles = {
   '/dashboard/add_sporting_achievement': 'Add Sporting Achievement',
   '/dashboard/edit_sporting_achievement': 'Edit Sporting Achievement',
   '/dashboard/profile': 'Profile',
+  '/dashboard/change_password': 'Profile',
 };
 
 export default routeTitles;

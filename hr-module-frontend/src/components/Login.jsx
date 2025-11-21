@@ -22,12 +22,13 @@ const Login = () => {
                 headers: { 'Content-Type': 'application/json' }
             });
 
-            const { accessToken, username, user_role } = response.data;
+            const { accessToken, username, user_role, user_id } = response.data;
 
             if (accessToken) {
                 localStorage.setItem('token', accessToken);
                 localStorage.setItem('username', username);
                 localStorage.setItem('user_role', user_role);
+                localStorage.setItem('user_id', user_id);
                 navigate('/dashboard');
             } else {
                 setError('Login failed. No token received.');

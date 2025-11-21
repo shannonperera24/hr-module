@@ -102,6 +102,9 @@ import EditForeignMission from './components/Masters/EditForeignMission'
 import Commendation from './components/Masters/Commendation'
 import AddCommendation from './components/Masters/AddCommendation'
 import EditCommendation from './components/Masters/EditCommendation'
+import SportingAchievement from './components/Masters/SportingAchievement'
+import AddSportAch from './components/Masters/AddSportAch'
+import EditSportAch from './components/Masters/EditSportAch'
 
 import Security from './components/Security'
 import SecurityClearance from './components/Masters/SecurityClearance'
@@ -109,9 +112,7 @@ import AddSecurityClearance from './components/Masters/AddSecurityClearance'
 import EditSecurityClearance from './components/Masters/EditSecurityClearance'
 
 import Profile from './components/Profile'
-import SportingAchievement from './components/Masters/SportingAchievement'
-import AddSportAch from './components/Masters/AddSportAch'
-import EditSportAch from './components/Masters/EditSportAch'
+import ChangePassword from './components/ChangePassword'
 
 
 function TitleHandler() {
@@ -244,6 +245,7 @@ function App() {
           <Route path='add_sporting_achievement' element={<AddSportAch />} />
           <Route path='edit_sporting_achievement/:sporting_achievement_id' element={<EditSportAch />} />
           <Route path='profile' element={<Profile />} />
+          <Route path='change_password/:user_id' element={<ChangePassword />} />
         </Route>
       </Routes>
     </BrowserRouter>
